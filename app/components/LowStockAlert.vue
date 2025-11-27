@@ -2,6 +2,7 @@
 import type { Product } from "~/types";
 
 const { getAuthHeaders, isLoggedIn } = useAuth();
+const { refreshTrigger } = useLowStockAlert();
 
 const lowStockProducts = ref<Product[]>([]);
 const isOpen = ref(false);
@@ -34,7 +35,17 @@ const fetchLowStock = async () => {
 onMounted(() => {
   fetchLowStock();
   // Refresh every 5 minutes
-  setInterval(fetchLowStock, 5 * 60 * 1000);
+  const interval = setInterval(fetchLowStock, 5 * 60 * 1000);
+  
+  // Watch for refresh trigger changes
+  watch(refreshTrigger, () => {
+    fetchLowStock();
+  });
+
+  // Cleanup interval on unmount
+  onUnmounted(() => {
+    clearInterval(interval);
+  });
 });
 </script>
 

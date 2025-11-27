@@ -7,6 +7,7 @@ definePageMeta({
 
 const { getAuthHeaders } = useAuth();
 const { success, error } = useNotification();
+const { refresh: refreshLowStockAlert } = useLowStockAlert();
 
 const products = ref<Product[]>([]);
 const categories = ref<ProductCategory[]>([]);
@@ -246,6 +247,8 @@ const saveProduct = async () => {
     success(isEditing.value ? "ອັບເດດສິນຄ້າສຳເລັດ" : "ເພີ່ມສິນຄ້າສຳເລັດ");
     showModal.value = false;
     fetchData();
+    // Refresh low stock alert after product update
+    refreshLowStockAlert();
   } catch (err: any) {
     error(err?.data?.message || "ເກີດຂໍ້ຜິດພາດ");
   }
@@ -262,6 +265,8 @@ const deleteProduct = async (product: Product) => {
     });
     success("ລຶບສິນຄ້າສຳເລັດ");
     fetchData();
+    // Refresh low stock alert after product deletion
+    refreshLowStockAlert();
   } catch (err) {
     error("ເກີດຂໍ້ຜິດພາດ");
   }

@@ -7,6 +7,7 @@ definePageMeta({
 
 const { getAuthHeaders } = useAuth();
 const { success, error } = useNotification();
+const { refresh: refreshLowStockAlert } = useLowStockAlert();
 const cart = useCart();
 
 const products = ref<Product[]>([]);
@@ -202,6 +203,8 @@ const submitOrder = async () => {
       cart.clearCart();
       selectedCustomer.value = null;
       paymentStatus.value = "UNPAID";
+      // Refresh low stock alert after sale (stock was decremented)
+      refreshLowStockAlert();
       // Navigate to invoice
       navigateTo(`/sales/${res.data.id}`);
     }
