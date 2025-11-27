@@ -17,6 +17,8 @@ const isEditing = ref(false);
 const editingCustomer = ref<Customer | null>(null);
 const phoneExists = ref(false);
 const existingCustomer = ref<Customer | null>(null);
+const showDeleteDialog = ref(false);
+const deletingCustomer = ref<Customer | null>(null);
 
 const form = reactive({
   firstName: "",
@@ -307,6 +309,34 @@ const formatDate = (date: string) =>
     year: "numeric",
   });
 
+// Open delete dialog
+const openDeleteDialog = (customer: Customer) => {
+  deletingCustomer.value = customer;
+  showDeleteDialog.value = true;
+};
+
+// Delete customer
+const deleteCustomer = async () => {
+  if (!deletingCustomer.value) return;
+
+  try {
+    await $fetch(`/api/customers/${deletingCustomer.value.id}`, {
+      method: "DELETE",
+      headers: getAuthHeaders(),
+    });
+
+    success("ລຶບລູກຄ້າສຳເລັດ");
+    showDeleteDialog.value = false;
+    deletingCustomer.value = null;
+    fetchCustomers();
+  } catch (err: unknown) {
+    const e = err as { data?: { message?: string } };
+    error(e?.data?.message || "ເກີດຂໍ້ຜິດພາດ");
+    showDeleteDialog.value = false;
+    deletingCustomer.value = null;
+  }
+};
+
 // Watch search
 watch(search, () => {
   fetchCustomers();
@@ -426,6 +456,12 @@ onMounted(() => {
                     class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-gray-400 hover:text-white"
                   >
                     <Icon name="lucide:pencil" class="w-4 h-4" />
+                  </button>
+                  <button
+                    @click="openDeleteDialog(customer)"
+                    class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-gray-400 hover:text-red-400"
+                  >
+                    <Icon name="lucide:trash-2" class="w-4 h-4" />
                   </button>
                 </div>
               </td>
@@ -620,6 +656,18 @@ onMounted(() => {
         </div>
       </form>
     </Modal>
+
+    <!-- Delete Confirmation Dialog -->
+    <ConfirmDialog
+      :show="showDeleteDialog"
+      title="ລຶບລູກຄ້າ"
+      message="ທ່ານຕ້ອງການລຶບແທ້ບໍ?"
+      confirm-text="ລຶບ"
+      cancel-text="ຍົກເລີກ"
+      type="danger"
+      @confirm="deleteCustomer"
+      @cancel="showDeleteDialog = false; deletingCustomer = null"
+    />
   </div>
 </template>
 

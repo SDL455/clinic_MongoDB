@@ -30,6 +30,20 @@ const form = reactive({
   categoryId: 0,
 });
 
+// Image upload
+const fileInput = ref<HTMLInputElement | null>(null);
+const selectedImages = ref<File[]>([]);
+const previewUrls = ref<string[]>([]);
+const existingImages = ref<string[]>([]);
+
+// Form validation errors
+const errors = reactive({
+  name: "",
+  price: "",
+  categoryId: "",
+  images: "",
+});
+
 // Fetch data
 const fetchData = async () => {
   isLoading.value = true;
@@ -57,10 +71,89 @@ const fetchData = async () => {
   }
 };
 
+// Handle image selection
+const handleImageSelect = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  if (target.files) {
+    const files = Array.from(target.files);
+    const imageFiles = files.filter((file) => file.type.startsWith("image/"));
+    
+    if (imageFiles.length === 0) {
+      error("ກະລຸນາເລືອກໄຟລ໌ຮູບພາບ");
+      return;
+    }
+
+    const totalImages = selectedImages.value.length + existingImages.value.length + imageFiles.length;
+    if (totalImages > 10) {
+      error("ບໍ່ສາມາດເພີ່ມຮູບພາບເກີນ 10 ຮູບ");
+      return;
+    }
+
+    selectedImages.value.push(...imageFiles);
+    imageFiles.forEach((file) => {
+      previewUrls.value.push(URL.createObjectURL(file));
+    });
+
+    // Reset input
+    if (fileInput.value) {
+      fileInput.value.value = "";
+    }
+  }
+};
+
+// Remove selected image
+const removeImage = (index: number) => {
+  selectedImages.value.splice(index, 1);
+  URL.revokeObjectURL(previewUrls.value[index]);
+  previewUrls.value.splice(index, 1);
+};
+
+// Remove existing image
+const removeExistingImage = (index: number) => {
+  existingImages.value.splice(index, 1);
+};
+
+// Validate form
+const validateForm = (): boolean => {
+  let isValid = true;
+  
+  // Reset errors
+  errors.name = "";
+  errors.price = "";
+  errors.categoryId = "";
+  errors.images = "";
+
+  if (!form.name || !form.name.trim()) {
+    errors.name = "ກະລຸນາປ້ອນຊື່ສິນຄ້າ";
+    isValid = false;
+  }
+
+  if (!form.price || form.price <= 0) {
+    errors.price = "ກະລຸນາປ້ອນລາຄາທີ່ຖືກຕ້ອງ";
+    isValid = false;
+  }
+
+  if (!form.categoryId || form.categoryId === 0) {
+    errors.categoryId = "ກະລຸນາເລືອກປະເພດ";
+    isValid = false;
+  }
+
+  const totalImages = selectedImages.value.length + existingImages.value.length;
+  if (totalImages > 10) {
+    errors.images = "ບໍ່ສາມາດເພີ່ມຮູບພາບເກີນ 10 ຮູບ";
+    isValid = false;
+  }
+
+  return isValid;
+};
+
 // Open modal for new product
 const openNewModal = () => {
   isEditing.value = false;
   editingProduct.value = null;
+  selectedImages.value = [];
+  previewUrls.value = [];
+  existingImages.value = [];
   Object.assign(form, {
     name: "",
     description: "",
@@ -70,6 +163,13 @@ const openNewModal = () => {
     minStock: 5,
     categoryId: categories.value[0]?.id || 0,
   });
+  // Reset errors
+  Object.assign(errors, {
+    name: "",
+    price: "",
+    categoryId: "",
+    images: "",
+  });
   showModal.value = true;
 };
 
@@ -77,6 +177,9 @@ const openNewModal = () => {
 const openEditModal = (product: Product) => {
   isEditing.value = true;
   editingProduct.value = product;
+  selectedImages.value = [];
+  previewUrls.value = [];
+  existingImages.value = product.images ? [...product.images] : [];
   Object.assign(form, {
     name: product.name,
     description: product.description || "",
@@ -86,13 +189,20 @@ const openEditModal = (product: Product) => {
     minStock: product.minStock,
     categoryId: product.categoryId,
   });
+  // Reset errors
+  Object.assign(errors, {
+    name: "",
+    price: "",
+    categoryId: "",
+    images: "",
+  });
   showModal.value = true;
 };
 
 // Save product
 const saveProduct = async () => {
-  if (!form.name || !form.price || !form.categoryId) {
-    error("ກະລຸນາປ້ອນຂໍ້ມູນທີ່ຈຳເປັນ");
+  if (!validateForm()) {
+    error("ກະລຸນາກວດສອບຂໍ້ມູນທີ່ປ້ອນ");
     return;
   }
 
@@ -100,17 +210,44 @@ const saveProduct = async () => {
     const url = isEditing.value ? `/api/products/${editingProduct.value?.id}` : "/api/products";
     const method = isEditing.value ? "PUT" : "POST";
 
+    // Create FormData for file upload
+    const formData = new FormData();
+    formData.append("name", form.name);
+    formData.append("description", form.description || "");
+    formData.append("price", form.price.toString());
+    formData.append("costPrice", form.costPrice.toString());
+    formData.append("stock", form.stock.toString());
+    formData.append("minStock", form.minStock.toString());
+    formData.append("categoryId", form.categoryId.toString());
+    
+    // Append existing images
+    if (existingImages.value.length > 0) {
+      formData.append("existingImages", JSON.stringify(existingImages.value));
+    }
+
+    // Append new images
+    selectedImages.value.forEach((file) => {
+      formData.append("images", file);
+    });
+
+    const authHeaders = getAuthHeaders();
+    // Create headers object without Content-Type to let browser set it with boundary for FormData
+    const headers: Record<string, string> = {};
+    if (authHeaders.Authorization) {
+      headers.Authorization = authHeaders.Authorization;
+    }
+
     await $fetch(url, {
       method,
-      headers: getAuthHeaders(),
-      body: form,
+      headers,
+      body: formData,
     });
 
     success(isEditing.value ? "ອັບເດດສິນຄ້າສຳເລັດ" : "ເພີ່ມສິນຄ້າສຳເລັດ");
     showModal.value = false;
     fetchData();
-  } catch (err) {
-    error("ເກີດຂໍ້ຜິດພາດ");
+  } catch (err: any) {
+    error(err?.data?.message || "ເກີດຂໍ້ຜິດພາດ");
   }
 };
 
@@ -138,6 +275,21 @@ const formatCurrency = (value: number) =>
     minimumFractionDigits: 0,
   }).format(value);
 
+// Cleanup preview URLs
+const cleanupPreviews = () => {
+  previewUrls.value.forEach((url) => {
+    URL.revokeObjectURL(url);
+  });
+  previewUrls.value = [];
+};
+
+// Watch for modal close to cleanup
+watch(showModal, (newVal) => {
+  if (!newVal) {
+    cleanupPreviews();
+  }
+});
+
 // Watch for search changes
 watch([search, selectedCategory, filter], () => {
   fetchData();
@@ -145,6 +297,10 @@ watch([search, selectedCategory, filter], () => {
 
 onMounted(() => {
   fetchData();
+});
+
+onUnmounted(() => {
+  cleanupPreviews();
 });
 </script>
 
@@ -280,11 +436,12 @@ onMounted(() => {
     </div>
 
     <!-- Add/Edit Modal -->
-    <Modal :show="showModal" :title="isEditing ? 'ແກ້ໄຂສິນຄ້າ' : 'ເພີ່ມສິນຄ້າ'" @close="showModal = false">
+    <Modal :show="showModal" :title="isEditing ? 'ແກ້ໄຂສິນຄ້າ' : 'ເພີ່ມສິນຄ້າ'" size="xl" @close="showModal = false; cleanupPreviews()">
       <form @submit.prevent="saveProduct" class="space-y-4">
         <div>
           <label class="input-label">ຊື່ສິນຄ້າ *</label>
-          <input v-model="form.name" type="text" class="input" required />
+          <input v-model="form.name" type="text" class="input" :class="{ 'border-red-500': errors.name }" required />
+          <p v-if="errors.name" class="text-red-400 text-sm mt-1">{{ errors.name }}</p>
         </div>
 
         <div>
@@ -294,17 +451,20 @@ onMounted(() => {
 
         <div>
           <label class="input-label">ປະເພດ *</label>
-          <select v-model="form.categoryId" class="select" required>
+          <select v-model="form.categoryId" class="select" :class="{ 'border-red-500': errors.categoryId }" required>
+            <option :value="0">ເລືອກປະເພດ</option>
             <option v-for="cat in categories" :key="cat.id" :value="cat.id">
               {{ cat.name }} ({{ cat.unit }})
             </option>
           </select>
+          <p v-if="errors.categoryId" class="text-red-400 text-sm mt-1">{{ errors.categoryId }}</p>
         </div>
 
         <div class="grid grid-cols-2 gap-4">
           <div>
             <label class="input-label">ລາຄາຂາຍ *</label>
-            <input v-model.number="form.price" type="number" class="input" required min="0" />
+            <input v-model.number="form.price" type="number" class="input" :class="{ 'border-red-500': errors.price }" required min="0" />
+            <p v-if="errors.price" class="text-red-400 text-sm mt-1">{{ errors.price }}</p>
           </div>
           <div>
             <label class="input-label">ລາຄາຕົ້ນທຶນ</label>
@@ -320,6 +480,75 @@ onMounted(() => {
           <div>
             <label class="input-label">Stock ຕ່ຳສຸດ (ແຈ້ງເຕືອນ)</label>
             <input v-model.number="form.minStock" type="number" class="input" min="0" />
+          </div>
+        </div>
+
+        <!-- Image Upload -->
+        <div>
+          <label class="input-label">ຮູບພາບ (ສູງສຸດ 10 ຮູບ)</label>
+          <div class="space-y-3">
+            <!-- Image Preview Grid -->
+            <div v-if="previewUrls.length > 0 || existingImages.length > 0" class="grid grid-cols-5 gap-3">
+              <!-- Existing Images -->
+              <div
+                v-for="(image, index) in existingImages"
+                :key="`existing-${index}`"
+                class="relative group aspect-square rounded-lg overflow-hidden border border-gray-600 bg-clinic-dark"
+              >
+                <img :src="image" :alt="`Image ${index + 1}`" class="w-full h-full object-cover" />
+                <button
+                  type="button"
+                  @click="removeExistingImage(index)"
+                  class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                >
+                  <Icon name="lucide:trash-2" class="w-5 h-5 text-red-400" />
+                </button>
+              </div>
+              <!-- New Images -->
+              <div
+                v-for="(url, index) in previewUrls"
+                :key="`new-${index}`"
+                class="relative group aspect-square rounded-lg overflow-hidden border border-gray-600 bg-clinic-dark"
+              >
+                <img :src="url" :alt="`New image ${index + 1}`" class="w-full h-full object-cover" />
+                <button
+                  type="button"
+                  @click="removeImage(index)"
+                  class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                >
+                  <Icon name="lucide:trash-2" class="w-5 h-5 text-red-400" />
+                </button>
+              </div>
+            </div>
+
+            <!-- Upload Button -->
+            <div v-if="previewUrls.length + existingImages.length < 10" class="flex items-center gap-2">
+              <input
+                ref="fileInput"
+                type="file"
+                accept="image/*"
+                multiple
+                @change="handleImageSelect"
+                class="hidden"
+                :disabled="previewUrls.length + existingImages.length >= 10"
+              />
+              <button
+                type="button"
+                @click="fileInput?.click()"
+                class="btn btn-secondary flex items-center gap-2"
+                :disabled="previewUrls.length + existingImages.length >= 10"
+              >
+                <Icon name="lucide:upload" class="w-4 h-4" />
+                ເພີ່ມຮູບພາບ
+              </button>
+              <span class="text-sm text-gray-400">
+                ({{ previewUrls.length + existingImages.length }}/10)
+              </span>
+            </div>
+            <p v-if="errors.images" class="text-red-400 text-sm">{{ errors.images }}</p>
+            <p v-else-if="previewUrls.length + existingImages.length >= 10" class="text-amber-400 text-sm">
+              ເຖິງຈຳນວນສູງສຸດແລ້ວ (10 ຮູບ)
+            </p>
           </div>
         </div>
 

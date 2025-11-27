@@ -58,6 +58,7 @@ export interface Product {
   stock: number;
   minStock: number;
   categoryId: number;
+  images?: string[];
   isActive: boolean;
   createdAt: string;
   category?: ProductCategory;
