@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
@@ -7,7 +6,14 @@ export default defineNuxtConfig({
 
   css: ["~/assets/css/main.css"],
 
+  nitro: {
+    preset: "static"
+  },
+
   app: {
+    baseURL: '/clinic/',          
+    buildAssetsDir: 'assets/',    
+    
     head: {
       title: "Clinic Management System",
       meta: [
@@ -29,5 +35,5 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     jwtSecret: process.env.JWT_SECRET || "your-secret-key",
-  },
-});
+  }
+})

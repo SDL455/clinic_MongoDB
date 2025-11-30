@@ -20,6 +20,12 @@ const existingCustomer = ref<Customer | null>(null);
 const showDeleteDialog = ref(false);
 const deletingCustomer = ref<Customer | null>(null);
 
+// Pagination
+const currentPage = ref(1);
+const totalPages = ref(1);
+const total = ref(0);
+const limit = 10;
+
 const form = reactive({
   firstName: "",
   lastName: "",
@@ -62,11 +68,31 @@ watch(() => form.province, () => {
 const fetchCustomers = async () => {
   isLoading.value = true;
   try {
-    const query = search.value ? `?search=${encodeURIComponent(search.value)}` : "";
-    const res = await $fetch<{ success: boolean; data: Customer[] }>(`/api/customers${query}`, {
+    const query = new URLSearchParams();
+    if (search.value) query.set("search", search.value);
+    query.set("page", String(currentPage.value));
+    query.set("limit", String(limit));
+    
+    const res = await $fetch<{ 
+      success: boolean; 
+      data: Customer[];
+      pagination?: {
+        total: number;
+        page: number;
+        limit: number;
+        totalPages: number;
+      };
+    }>(`/api/customers?${query}`, {
       headers: getAuthHeaders(),
     });
-    if (res.success) customers.value = res.data || [];
+    if (res.success) {
+      customers.value = res.data || [];
+      if (res.pagination) {
+        total.value = res.pagination.total;
+        totalPages.value = res.pagination.totalPages;
+        currentPage.value = res.pagination.page;
+      }
+    }
   } catch (err) {
     error("ເກີດຂໍ້ຜິດພາດ");
   } finally {
@@ -337,8 +363,14 @@ const deleteCustomer = async () => {
   }
 };
 
-// Watch search
+// Watch search - reset to page 1 when searching
 watch(search, () => {
+  currentPage.value = 1;
+  fetchCustomers();
+});
+
+// Watch page changes
+watch(currentPage, () => {
   fetchCustomers();
 });
 
@@ -469,6 +501,15 @@ onMounted(() => {
           </tbody>
         </table>
       </div>
+      
+      <!-- Pagination -->
+      <Pagination
+        :current-page="currentPage"
+        :total-pages="totalPages"
+        :total="total"
+        :limit="limit"
+        @update:current-page="currentPage = $event"
+      />
     </div>
 
     <!-- Modal -->

@@ -13,6 +13,12 @@ const isLoading = ref(true);
 const search = ref("");
 const statusFilter = ref("");
 
+// Pagination
+const currentPage = ref(1);
+const totalPages = ref(1);
+const total = ref(0);
+const limit = 10;
+
 // Fetch sales
 const fetchSales = async () => {
   isLoading.value = true;
@@ -20,12 +26,29 @@ const fetchSales = async () => {
     const query = new URLSearchParams();
     if (search.value) query.set("search", search.value);
     if (statusFilter.value) query.set("status", statusFilter.value);
+    query.set("page", String(currentPage.value));
+    query.set("limit", String(limit));
 
-    const res = await $fetch<{ success: boolean; data: Sale[] }>(
-      `/api/sales?${query}`,
-      { headers: getAuthHeaders() }
-    );
-    if (res.success) sales.value = res.data || [];
+    const res = await $fetch<{ 
+      success: boolean; 
+      data: Sale[];
+      pagination?: {
+        total: number;
+        page: number;
+        limit: number;
+        totalPages: number;
+      };
+    }>(`/api/sales?${query}`, {
+      headers: getAuthHeaders(),
+    });
+    if (res.success) {
+      sales.value = res.data || [];
+      if (res.pagination) {
+        total.value = res.pagination.total;
+        totalPages.value = res.pagination.totalPages;
+        currentPage.value = res.pagination.page;
+      }
+    }
   } catch (err) {
     error("ເກີດຂໍ້ຜິດພາດ");
   } finally {
@@ -78,8 +101,14 @@ const getStatusBadge = (status: string) => {
   }
 };
 
-// Watch filters
+// Watch filters - reset to page 1 when filtering
 watch([search, statusFilter], () => {
+  currentPage.value = 1;
+  fetchSales();
+});
+
+// Watch page changes
+watch(currentPage, () => {
   fetchSales();
 });
 
@@ -211,6 +240,15 @@ onMounted(() => {
           </tbody>
         </table>
       </div>
+      
+      <!-- Pagination -->
+      <Pagination
+        :current-page="currentPage"
+        :total-pages="totalPages"
+        :total="total"
+        :limit="limit"
+        @update:current-page="currentPage = $event"
+      />
     </div>
   </div>
 </template>

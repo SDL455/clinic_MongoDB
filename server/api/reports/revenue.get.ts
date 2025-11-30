@@ -6,6 +6,7 @@ export default defineEventHandler(async (event) => {
 
   const query = getQuery(event);
   const period = query.period as string || "daily";
+  const status = query.status as string || "ALL";
   const startDate = query.startDate
     ? new Date(query.startDate as string)
     : new Date(new Date().setDate(new Date().getDate() - 30));
@@ -14,14 +15,29 @@ export default defineEventHandler(async (event) => {
   // Adjust endDate to end of day
   endDate.setHours(23, 59, 59, 999);
 
-  const sales = await prisma.sale.findMany({
-    where: {
-      status: "PAID",
+  // Build where clause for payment status
+  const whereClause: any = {
       createdAt: {
         gte: startDate,
         lte: endDate,
       },
-    },
+  };
+
+  // Filter by payment status
+  // When status is "ALL", default to PAID and TRANSFER only (exclude UNPAID) for all period types
+  // When a specific status is selected, use that status
+  if (status === "ALL") {
+    // For all report period types (daily/weekly/monthly/yearly), only include PAID and TRANSFER
+    whereClause.status = {
+      in: ["PAID", "TRANSFER"],
+    };
+  } else {
+    // User has selected a specific status filter
+    whereClause.status = status;
+  }
+
+  const sales = await prisma.sale.findMany({
+    where: whereClause,
     orderBy: { createdAt: "asc" },
   });
 

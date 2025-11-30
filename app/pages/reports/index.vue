@@ -18,6 +18,7 @@ interface ReportData {
 const reportData = ref<ReportData | null>(null);
 const isLoading = ref(true);
 const period = ref("daily");
+const paymentStatus = ref("ALL");
 
 // Date filters
 const startDate = ref(
@@ -33,6 +34,7 @@ const fetchReport = async () => {
       period: period.value,
       startDate: startDate.value,
       endDate: endDate.value,
+      status: paymentStatus.value,
     });
 
     const res = await $fetch<{ success: boolean; data: ReportData }>(
@@ -82,7 +84,7 @@ const maxRevenue = computed(() =>
 );
 
 // Watch filters
-watch([period, startDate, endDate], () => {
+watch([period, startDate, endDate, paymentStatus], () => {
   fetchReport();
 });
 
@@ -100,7 +102,7 @@ onMounted(() => {
 
     <!-- Filters -->
     <div class="card p-4 mb-6">
-      <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-5 gap-4">
         <div>
           <label class="input-label">ປະເພດລາຍງານ</label>
           <select v-model="period" class="select">
@@ -108,6 +110,15 @@ onMounted(() => {
             <option value="weekly">ລາຍອາທິດ</option>
             <option value="monthly">ລາຍເດືອນ</option>
             <option value="yearly">ລາຍປີ</option>
+          </select>
+        </div>
+        <div>
+          <label class="input-label">ສະຖານະການຈ່າຍ</label>
+          <select v-model="paymentStatus" class="select">
+            <option value="ALL">ທັງໝົດ</option>
+            <option value="UNPAID">ຍັງບໍ່ຈ່າຍ</option>
+            <option value="PAID">ຈ່າຍແລ້ວ</option>
+            <option value="TRANSFER">ໂອນ</option>
           </select>
         </div>
         <div>
