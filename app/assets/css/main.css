@@ -17,34 +17,34 @@
 
   body {
     @apply bg-clinic-bg antialiased;
-    color: theme("colors.clinic.text");
+    color: #000000;
   }
 
   /* Headings with proper weight and color */
   h1 {
     @apply text-3xl font-bold;
-    color: theme("colors.clinic.text");
+    color: #000000;
   }
 
   h2 {
     @apply text-2xl font-bold;
-    color: theme("colors.clinic.text");
+    color: #000000;
   }
 
   h3 {
     @apply text-xl font-semibold;
-    color: theme("colors.clinic.text");
+    color: #000000;
   }
 
   h4 {
     @apply text-lg font-semibold;
-    color: theme("colors.clinic.text");
+    color: #000000;
   }
 
   h5,
   h6 {
     @apply text-base font-semibold;
-    color: theme("colors.clinic.text");
+    color: #000000;
   }
 
   /* Links */
@@ -98,34 +98,34 @@
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-clinic-primary to-clinic-primary-light text-white
+    @apply bg-gradient-to-r from-clinic-primary to-clinic-primary-light text-black
            hover:from-clinic-primary-dark hover:to-clinic-primary
            shadow-md hover:shadow-lg;
     box-shadow: 0 4px 14px 0 rgba(14, 165, 233, 0.25);
   }
 
   .btn-secondary {
-    @apply bg-clinic-muted text-clinic-text border border-clinic-border
+    @apply bg-clinic-muted text-black border border-clinic-border
            hover:bg-clinic-surface-hover hover:border-clinic-primary/30;
   }
 
   .btn-success {
-    @apply bg-gradient-to-r from-clinic-success to-emerald-500 text-white
+    @apply bg-gradient-to-r from-clinic-success to-emerald-500 text-black
            hover:from-emerald-600 hover:to-emerald-500 shadow-md hover:shadow-lg;
   }
 
   .btn-danger {
-    @apply bg-gradient-to-r from-clinic-error to-red-500 text-white
+    @apply bg-gradient-to-r from-clinic-error to-red-500 text-black
            hover:from-red-600 hover:to-red-500 shadow-md hover:shadow-lg;
   }
 
   .btn-warning {
-    @apply bg-gradient-to-r from-clinic-warning to-amber-500 text-white
+    @apply bg-gradient-to-r from-clinic-warning to-amber-500 text-black
            hover:from-amber-600 hover:to-amber-500 shadow-md hover:shadow-lg;
   }
 
   .btn-purple {
-    @apply bg-gradient-to-r from-clinic-secondary to-purple-500 text-white
+    @apply bg-gradient-to-r from-clinic-secondary to-purple-500 text-black
            hover:from-purple-600 hover:to-purple-500 shadow-md hover:shadow-lg;
   }
 
@@ -141,7 +141,7 @@
   .input {
     @apply w-full px-4 py-2.5 rounded-xl
            bg-clinic-surface border border-clinic-border
-           text-clinic-text placeholder-clinic-text-light
+           text-black placeholder-black
            focus:outline-none focus:border-clinic-primary focus:ring-2 focus:ring-clinic-primary/20
            transition-all duration-200;
   }
@@ -151,7 +151,7 @@
   }
 
   .input-label {
-    @apply block text-sm font-semibold text-clinic-text mb-2;
+    @apply block text-sm font-semibold text-black mb-2;
   }
 
   .input-error {
@@ -178,11 +178,11 @@
 
   .table th {
     @apply px-6 py-4 bg-gradient-to-r from-clinic-primary/5 to-clinic-secondary/5
-           font-semibold text-sm text-clinic-text uppercase tracking-wider;
+           font-semibold text-sm text-black uppercase tracking-wider;
   }
 
   .table td {
-    @apply px-6 py-4 border-t border-clinic-border text-clinic-text;
+    @apply px-6 py-4 border-t border-clinic-border text-black;
   }
 
   .table tbody tr {
@@ -195,27 +195,27 @@
   }
 
   .badge-success {
-    @apply bg-clinic-success-bg text-clinic-success;
+    @apply bg-clinic-success-bg text-black;
   }
 
   .badge-warning {
-    @apply bg-clinic-warning-bg text-clinic-warning;
+    @apply bg-clinic-warning-bg text-black;
   }
 
   .badge-danger {
-    @apply bg-clinic-error-bg text-clinic-error;
+    @apply bg-clinic-error-bg text-black;
   }
 
   .badge-info {
-    @apply bg-clinic-info-bg text-clinic-info;
+    @apply bg-clinic-info-bg text-black;
   }
 
   .badge-purple {
-    @apply bg-purple-100 text-clinic-secondary;
+    @apply bg-purple-100 text-black;
   }
 
   .badge-pink {
-    @apply bg-pink-100 text-pink-600;
+    @apply bg-pink-100 text-black;
   }
 
   /* === Modal Styles === */
@@ -239,14 +239,14 @@
   /* === Menu Item Styles - Clean Hover === */
   .menu-item {
     @apply flex items-center gap-3 px-4 py-3 rounded-xl
-           text-clinic-text
+           text-black
            hover:bg-clinic-primary/5
            transition-all duration-200 cursor-pointer;
   }
 
   .menu-item-active {
     @apply bg-gradient-to-r from-clinic-primary/10 to-clinic-secondary/10
-           text-clinic-primary border-l-4 border-clinic-primary;
+           text-black border-l-4 border-clinic-primary;
   }
 
   /* Menu item collapsed state */
@@ -276,19 +276,19 @@
   }
 
   .alert-warning {
-    @apply bg-clinic-warning-bg border-clinic-warning/30 text-amber-900;
+    @apply bg-clinic-warning-bg border-clinic-warning/30 text-black;
   }
 
   .alert-danger {
-    @apply bg-clinic-error-bg border-clinic-error/30 text-red-900;
+    @apply bg-clinic-error-bg border-clinic-error/30 text-black;
   }
 
   .alert-success {
-    @apply bg-clinic-success-bg border-clinic-success/30 text-emerald-900;
+    @apply bg-clinic-success-bg border-clinic-success/30 text-black;
   }
 
   .alert-info {
-    @apply bg-clinic-info-bg border-clinic-info/30 text-blue-900;
+    @apply bg-clinic-info-bg border-clinic-info/30 text-black;
   }
 
   /* === Filter Buttons === */
@@ -298,15 +298,15 @@
   }
 
   .filter-btn-all {
-    @apply bg-clinic-secondary text-white border-clinic-secondary;
+    @apply bg-clinic-secondary text-black border-clinic-secondary;
   }
 
   .filter-btn-active {
-    @apply bg-opacity-100 text-white;
+    @apply bg-opacity-100 text-black;
   }
 
   .filter-btn-inactive {
-    @apply bg-transparent text-clinic-text-muted hover:bg-clinic-primary/10 border-clinic-border;
+    @apply bg-transparent text-black hover:bg-clinic-primary/10 border-clinic-border;
   }
 
   /* === Product Card === */
@@ -323,15 +323,15 @@
   }
 
   .icon-btn-success {
-    @apply bg-clinic-success text-white hover:bg-clinic-success-light shadow-sm;
+    @apply bg-clinic-success text-black hover:bg-clinic-success-light shadow-sm;
   }
 
   .icon-btn-info {
-    @apply bg-clinic-info text-white hover:bg-clinic-info-light shadow-sm;
+    @apply bg-clinic-info text-black hover:bg-clinic-info-light shadow-sm;
   }
 
   .icon-btn-danger {
-    @apply bg-clinic-error text-white hover:bg-clinic-error-light shadow-sm;
+    @apply bg-clinic-error text-black hover:bg-clinic-error-light shadow-sm;
   }
 
   /* === Stock Badge === */
@@ -340,11 +340,11 @@
   }
 
   .stock-badge-low {
-    @apply bg-clinic-error-bg text-clinic-error;
+    @apply bg-clinic-error-bg text-black;
   }
 
   .stock-badge-ok {
-    @apply bg-clinic-success-bg text-clinic-success;
+    @apply bg-clinic-success-bg text-black;
   }
 }
 

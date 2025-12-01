@@ -17,13 +17,13 @@ const getIcon = (type: string) => {
 const getClass = (type: string) => {
   switch (type) {
     case "success":
-      return "bg-emerald-500/20 border-emerald-500/40 text-emerald-400";
+      return "bg-emerald-500/20 border-emerald-500/40 text-black";
     case "error":
-      return "bg-red-500/20 border-red-500/40 text-red-400";
+      return "bg-red-500/20 border-red-500/40 text-black";
     case "warning":
-      return "bg-amber-500/20 border-amber-500/40 text-amber-400";
+      return "bg-amber-500/20 border-amber-500/40 text-black";
     default:
-      return "bg-cyan-500/20 border-cyan-500/40 text-cyan-400";
+      return "bg-cyan-500/20 border-cyan-500/40 text-black";
   }
 };
 </script>

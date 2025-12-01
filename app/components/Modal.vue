@@ -57,11 +57,11 @@ onUnmounted(() => {
             class="px-6 py-4 border-b border-clinic-border flex items-center justify-between"
           >
             <slot name="header">
-              <h3 class="text-lg font-semibold text-white">{{ title }}</h3>
+              <h3 class="text-lg font-semibold text-black">{{ title }}</h3>
             </slot>
             <button
               @click="emit('close')"
-              class="p-1 rounded hover:bg-clinic-dark transition-colors text-gray-400 hover:text-white"
+              class="p-1 rounded hover:bg-clinic-dark transition-colors text-black hover:text-black"
             >
               <Icon name="lucide:x" class="w-5 h-5" />
             </button>

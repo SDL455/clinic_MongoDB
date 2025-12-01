@@ -37,9 +37,9 @@ export default <Config>{
           muted: "#f1f5f9",        // Muted background areas
           
           // === Text Colors ===
-          text: "#1e293b",         // Dark slate for primary text
-          "text-muted": "#64748b", // Medium gray for secondary text
-          "text-light": "#94a3b8", // Light gray for tertiary text
+          text: "#000000",         // Black for primary text
+          "text-muted": "#000000", // Black for secondary text
+          "text-light": "#000000", // Black for tertiary text
           
           // === Primary Brand Colors ===
           primary: "#0ea5e9",      // Sky blue - main brand color

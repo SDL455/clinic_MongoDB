@@ -211,13 +211,13 @@ const handleSubmit = async () => {
 </template>
 
 <style scoped>
-/* Override global black text for login page - all text should be white */
+/* All text should be black */
 .login-container,
 .login-container * {
-  color: #ffffff !important;
+  color: #000000 !important;
 }
 
-/* Ensure all text elements in login page are white */
+/* Ensure all text elements in login page are black */
 .login-container h1,
 .login-container h2,
 .login-container h3,
@@ -234,7 +234,7 @@ const handleSubmit = async () => {
 .login-container select,
 .login-container button,
 .login-container li {
-  color: #ffffff !important;
+  color: #000000 !important;
 }
 
 .login-container {
@@ -274,7 +274,7 @@ const handleSubmit = async () => {
 }
 
 .logo-icon {
-  @apply w-12 h-12 text-white drop-shadow-lg;
+  @apply w-12 h-12 text-black drop-shadow-lg;
 }
 
 .clinic-info {
@@ -283,12 +283,12 @@ const handleSubmit = async () => {
 
 .clinic-title {
   @apply text-4xl font-extrabold tracking-tight;
-  color: #ffffff;
+  color: #000000;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .clinic-subtitle {
-  @apply text-gray-200 text-sm font-medium;
+  @apply text-black text-sm font-medium;
   opacity: 0.85;
 }
 
@@ -311,18 +311,18 @@ const handleSubmit = async () => {
 }
 
 .form-icon {
-  @apply w-8 h-8 text-white;
+  @apply w-8 h-8 text-black;
 }
 
 .form-title {
   @apply font-bold;
   font-size: 14px !important;
-  color: #ffffff !important;
+  color: #000000 !important;
 }
 
 .form-description {
   font-size: 14px !important;
-  color: rgba(255, 255, 255, 0.7) !important;
+  color: #000000 !important;
 }
 
 /* Form Styles */
@@ -337,7 +337,7 @@ const handleSubmit = async () => {
 .field-label {
   @apply flex items-center gap-2 font-semibold;
   font-size: 12px !important;
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: #000000 !important;
 }
 
 .label-icon {
@@ -386,11 +386,11 @@ const handleSubmit = async () => {
   @apply w-full pl-12 pr-12 py-3.5 bg-transparent
          focus:outline-none font-medium;
   font-size: 12px !important;
-  color: #ffffff !important;
+  color: #000000 !important;
 }
 
 .field-input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .password-toggle {
@@ -416,7 +416,7 @@ const handleSubmit = async () => {
 /* Submit Button */
 .submit-button {
   @apply relative w-full mt-6 py-3.5 rounded-xl
-         text-white font-semibold shadow-lg
+         text-black font-semibold shadow-lg
          overflow-hidden transition-all duration-300
          disabled:opacity-60 disabled:cursor-not-allowed
          active:scale-[0.98];
@@ -440,7 +440,7 @@ const handleSubmit = async () => {
 
 .button-text {
   @apply text-base;
-  color: #ffffff !important;
+  color: #000000 !important;
   font-size: 14px !important;
 }
 
@@ -456,7 +456,7 @@ const handleSubmit = async () => {
 /* Footer */
 .footer-text {
   @apply text-center text-xs font-medium;
-  color: rgba(255, 255, 255, 0.6);
+  color: #000000;
 }
 
 /* Animations */

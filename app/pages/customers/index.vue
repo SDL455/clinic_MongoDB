@@ -398,7 +398,7 @@ onMounted(() => {
       <div class="relative">
         <Icon
           name="lucide:search"
-          class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500"
+          class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-black"
         />
         <input
           v-model="search"
@@ -426,11 +426,11 @@ onMounted(() => {
           <tbody>
             <tr v-if="isLoading">
               <td colspan="6" class="text-center py-8">
-                <Icon name="lucide:loader-2" class="w-6 h-6 animate-spin mx-auto text-clinic-accent" />
+                <Icon name="lucide:loader-2" class="w-6 h-6 animate-spin mx-auto text-black" />
               </td>
             </tr>
             <tr v-else-if="customers.length === 0">
-              <td colspan="6" class="text-center py-8 text-gray-400">
+              <td colspan="6" class="text-center py-8 text-black">
                 ບໍ່ມີລູກຄ້າ
               </td>
             </tr>
@@ -438,7 +438,7 @@ onMounted(() => {
               <td>
                 <NuxtLink
                   :to="`/customers/${customer.id}`"
-                  class="flex items-center gap-3 hover:text-clinic-accent"
+                  class="flex items-center gap-3 hover:text-black"
                 >
                   <div class="w-10 h-10 rounded-full bg-clinic-accent/20 flex items-center justify-center overflow-hidden">
                     <img
@@ -447,19 +447,19 @@ onMounted(() => {
                       :alt="`${customer.firstName} ${customer.lastName}`"
                       class="w-full h-full object-cover"
                     />
-                    <Icon v-else name="lucide:user" class="w-5 h-5 text-clinic-accent" />
+                    <Icon v-else name="lucide:user" class="w-5 h-5 text-black" />
                   </div>
-                  <span class="font-medium text-white">
+                  <span class="font-medium text-black">
                     {{ customer.firstName }} {{ customer.lastName }}
                   </span>
                 </NuxtLink>
               </td>
               <td>
-                <a :href="`tel:${customer.phone}`" class="text-clinic-accent hover:underline">
+                <a :href="`tel:${customer.phone}`" class="text-black hover:underline">
                   {{ customer.phone }}
                 </a>
               </td>
-              <td class="text-gray-400 max-w-xs truncate">
+              <td class="text-black max-w-xs truncate">
                 <div v-if="(customer as any).province || (customer as any).district || (customer as any).village">
                   <span v-if="(customer as any).village">{{ (customer as any).village }}, </span>
                   <span v-if="(customer as any).district">{{ (customer as any).district }}, </span>
@@ -472,26 +472,26 @@ onMounted(() => {
                   {{ customer._count?.sales || 0 }} ຄັ້ງ
                 </span>
               </td>
-              <td class="text-gray-400">
+              <td class="text-black">
                 {{ formatDate(customer.createdAt) }}
               </td>
               <td class="text-right">
                 <div class="flex items-center justify-end gap-2">
                   <NuxtLink
                     :to="`/customers/${customer.id}`"
-                    class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-gray-400 hover:text-white"
+                    class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-black hover:text-black"
                   >
                     <Icon name="lucide:history" class="w-4 h-4" />
                   </NuxtLink>
                   <button
                     @click="openEditModal(customer)"
-                    class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-gray-400 hover:text-white"
+                    class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-black hover:text-black"
                   >
                     <Icon name="lucide:pencil" class="w-4 h-4" />
                   </button>
                   <button
                     @click="openDeleteDialog(customer)"
-                    class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-gray-400 hover:text-red-400"
+                    class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-black hover:text-black"
                   >
                     <Icon name="lucide:trash-2" class="w-4 h-4" />
                   </button>
@@ -546,7 +546,7 @@ onMounted(() => {
                 <Icon
                   v-else
                   name="lucide:image"
-                  class="w-8 h-8 text-gray-400"
+                  class="w-8 h-8 text-black"
                 />
               </div>
               <input
@@ -561,7 +561,7 @@ onMounted(() => {
                 type="button"
                 @click="removeFile"
                 class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 hover:bg-red-600 rounded-full 
-                       flex items-center justify-center text-white text-xs"
+                       flex items-center justify-center text-black text-xs"
               >
                 <Icon name="lucide:x" class="w-4 h-4" />
               </button>
@@ -575,7 +575,7 @@ onMounted(() => {
                 <Icon name="lucide:upload" class="w-4 h-4" />
                 ເລືອກຮູບພາບ
               </button>
-              <p class="text-xs text-gray-400 mt-2">
+              <p class="text-xs text-black mt-2">
                 PNG, JPG, GIF (ສູງສຸດ 5MB)
               </p>
             </div>
@@ -591,7 +591,7 @@ onMounted(() => {
               class="input"
               :class="{ 'input-error': errors.firstName }"
             />
-            <p v-if="errors.firstName" class="text-red-400 text-xs mt-1">
+            <p v-if="errors.firstName" class="text-black text-xs mt-1">
               {{ errors.firstName }}
             </p>
           </div>
@@ -603,7 +603,7 @@ onMounted(() => {
               class="input"
               :class="{ 'input-error': errors.lastName }"
             />
-            <p v-if="errors.lastName" class="text-red-400 text-xs mt-1">
+            <p v-if="errors.lastName" class="text-black text-xs mt-1">
               {{ errors.lastName }}
             </p>
           </div>
@@ -617,7 +617,7 @@ onMounted(() => {
             class="input"
             :class="{ 'input-error': errors.phone || phoneExists }"
           />
-          <p v-if="errors.phone" class="text-red-400 text-xs mt-1">
+          <p v-if="errors.phone" class="text-black text-xs mt-1">
             {{ errors.phone }}
           </p>
         </div>
@@ -634,7 +634,7 @@ onMounted(() => {
               {{ province }}
             </option>
           </select>
-          <p v-if="errors.province" class="text-red-400 text-xs mt-1">
+          <p v-if="errors.province" class="text-black text-xs mt-1">
             {{ errors.province }}
           </p>
         </div>
@@ -652,7 +652,7 @@ onMounted(() => {
               {{ district }}
             </option>
           </select>
-          <p v-if="errors.district" class="text-red-400 text-xs mt-1">
+          <p v-if="errors.district" class="text-black text-xs mt-1">
             {{ errors.district }}
           </p>
         </div>
@@ -666,7 +666,7 @@ onMounted(() => {
             placeholder="ປ້ອນຊື່ບ້ານ"
             :class="{ 'input-error': errors.village }"
           />
-          <p v-if="errors.village" class="text-red-400 text-xs mt-1">
+          <p v-if="errors.village" class="text-black text-xs mt-1">
             {{ errors.village }}
           </p>
         </div>
@@ -682,7 +682,7 @@ onMounted(() => {
             max="150"
             :class="{ 'input-error': errors.age }"
           />
-          <p v-if="errors.age" class="text-red-400 text-xs mt-1">
+          <p v-if="errors.age" class="text-black text-xs mt-1">
             {{ errors.age }}
           </p>
         </div>

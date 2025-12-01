@@ -170,11 +170,11 @@ onMounted(() => {
           <tbody>
             <tr v-if="isLoading">
               <td colspan="7" class="text-center py-8">
-                <Icon name="lucide:loader-2" class="w-6 h-6 animate-spin mx-auto text-clinic-accent" />
+                <Icon name="lucide:loader-2" class="w-6 h-6 animate-spin mx-auto text-black" />
               </td>
             </tr>
             <tr v-else-if="users.length === 0">
-              <td colspan="7" class="text-center py-8 text-gray-400">
+              <td colspan="7" class="text-center py-8 text-black">
                 ບໍ່ມີຜູ້ໃຊ້
               </td>
             </tr>
@@ -185,8 +185,8 @@ onMounted(() => {
                     class="w-10 h-10 rounded-full flex items-center justify-center"
                     :class="
                       user.role === 'ADMIN'
-                        ? 'bg-amber-500/20 text-amber-400'
-                        : 'bg-clinic-accent/20 text-clinic-accent'
+                        ? 'bg-amber-500/20 text-black'
+                        : 'bg-clinic-accent/20 text-black'
                     "
                   >
                     <Icon
@@ -195,17 +195,17 @@ onMounted(() => {
                     />
                   </div>
                   <div>
-                    <p class="font-medium text-white">{{ user.name }}</p>
+                    <p class="font-medium text-black">{{ user.name }}</p>
                     <p
                       v-if="user.id === currentUser?.id"
-                      class="text-xs text-clinic-accent"
+                      class="text-xs text-black"
                     >
                       (ທ່ານ)
                     </p>
                   </div>
                 </div>
               </td>
-              <td class="font-mono text-gray-400">{{ user.username }}</td>
+              <td class="font-mono text-black">{{ user.username }}</td>
               <td>
                 <span
                   class="badge"
@@ -214,7 +214,7 @@ onMounted(() => {
                   {{ user.role === "ADMIN" ? "ຜູ້ດູແລລະບົບ" : "ພະນັກງານ" }}
                 </span>
               </td>
-              <td class="text-center text-gray-400">
+              <td class="text-center text-black">
                 {{ user._count?.sales || 0 }} ຄັ້ງ
               </td>
               <td>
@@ -227,11 +227,11 @@ onMounted(() => {
                   {{ user.isActive ? "ເປີດໃຊ້ງານ" : "ປິດໃຊ້ງານ" }}
                 </button>
               </td>
-              <td class="text-gray-400">{{ formatDate(user.createdAt) }}</td>
+              <td class="text-black">{{ formatDate(user.createdAt) }}</td>
               <td class="text-right">
                 <button
                   @click="openEditModal(user)"
-                  class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-gray-400 hover:text-white"
+                  class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-black hover:text-black"
                 >
                   <Icon name="lucide:pencil" class="w-4 h-4" />
                 </button>
@@ -287,9 +287,9 @@ onMounted(() => {
             id="isActive"
             v-model="form.isActive"
             type="checkbox"
-            class="w-4 h-4 rounded border-clinic-border bg-clinic-dark text-clinic-accent focus:ring-clinic-accent"
+            class="w-4 h-4 rounded border-clinic-border bg-clinic-dark text-black focus:ring-clinic-accent"
           />
-          <label for="isActive" class="text-gray-300">ເປີດໃຊ້ງານ</label>
+          <label for="isActive" class="text-black">ເປີດໃຊ້ງານ</label>
         </div>
 
         <div class="flex gap-3 pt-4">

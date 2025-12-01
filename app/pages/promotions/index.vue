@@ -156,7 +156,7 @@ onMounted(() => {
 
     <!-- Promotions Grid -->
     <div v-if="isLoading" class="flex items-center justify-center h-64">
-      <Icon name="lucide:loader-2" class="w-10 h-10 animate-spin text-clinic-accent" />
+      <Icon name="lucide:loader-2" class="w-10 h-10 animate-spin text-black" />
     </div>
 
     <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -178,22 +178,22 @@ onMounted(() => {
 
         <div class="mb-4">
           <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center">
-            <Icon name="lucide:percent" class="w-6 h-6 text-amber-400" />
+            <Icon name="lucide:percent" class="w-6 h-6 text-black" />
           </div>
         </div>
 
-        <h3 class="text-lg font-semibold text-white mb-2">{{ promo.name }}</h3>
-        <p v-if="promo.description" class="text-gray-400 text-sm mb-4 line-clamp-2">
+        <h3 class="text-lg font-semibold text-black mb-2">{{ promo.name }}</h3>
+        <p v-if="promo.description" class="text-black text-sm mb-4 line-clamp-2">
           {{ promo.description }}
         </p>
 
         <!-- Discount -->
-        <div class="text-3xl font-bold text-amber-400 mb-4">
+        <div class="text-3xl font-bold text-black mb-4">
           {{ formatDiscount(promo) }}
         </div>
 
         <!-- Date Range -->
-        <div class="text-sm text-gray-500 mb-4">
+        <div class="text-sm text-black mb-4">
           <Icon name="lucide:calendar" class="w-4 h-4 inline mr-1" />
           {{ formatDate(promo.startDate) }} - {{ formatDate(promo.endDate) }}
         </div>
@@ -209,7 +209,7 @@ onMounted(() => {
           </button>
           <button
             @click="deletePromotion(promo)"
-            class="btn btn-sm px-3 hover:bg-red-500/20 text-gray-400 hover:text-red-400"
+            class="btn btn-sm px-3 hover:bg-red-500/20 text-black hover:text-black"
           >
             <Icon name="lucide:trash-2" class="w-4 h-4" />
           </button>
@@ -219,7 +219,7 @@ onMounted(() => {
       <!-- Empty State -->
       <div
         v-if="promotions.length === 0"
-        class="col-span-full text-center py-12 text-gray-400"
+        class="col-span-full text-center py-12 text-black"
       >
         <Icon name="lucide:percent" class="w-12 h-12 mx-auto mb-3 opacity-50" />
         <p>ບໍ່ມີໂປຣໂມຊັ່ນ</p>

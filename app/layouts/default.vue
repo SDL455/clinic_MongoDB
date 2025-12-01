@@ -135,14 +135,14 @@ onUnmounted(() => {
               alt="Clinic Logo" 
               class="w-full h-full object-cover"
             />
-            <Icon v-else name="lucide:heart-pulse" class="w-7 h-7 text-white" />
+            <Icon v-else name="lucide:heart-pulse" class="w-7 h-7 text-black" />
           </div>
           <div 
             v-if="isDrawerExpanded || isMobile"
             class="overflow-hidden transition-all duration-300"
           >
-            <h1 class="font-bold text-white text-lg whitespace-nowrap">{{ clinicName }}</h1>
-            <p class="text-xs text-white/70 whitespace-nowrap">{{ clinicSubtitle }}</p>
+            <h1 class="font-bold text-black text-lg whitespace-nowrap">{{ clinicName }}</h1>
+            <p class="text-xs text-black/70 whitespace-nowrap">{{ clinicSubtitle }}</p>
           </div>
         </div>
       </div>
@@ -172,7 +172,7 @@ onUnmounted(() => {
             v-if="!isDrawerExpanded && !isMobile"
             class="absolute left-full ml-2 px-3 py-2 bg-clinic-surface border border-clinic-border rounded-xl shadow-xl
                    opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200
-                   whitespace-nowrap z-50 text-clinic-text"
+                   whitespace-nowrap z-50 text-black"
           >
             {{ item.label }}
           </div>
@@ -188,21 +188,21 @@ onUnmounted(() => {
           <div
             class="w-10 h-10 rounded-full bg-gradient-to-br from-clinic-purple to-clinic-pink flex items-center justify-center shrink-0"
           >
-            <Icon name="lucide:user" class="w-5 h-5 text-white" />
+            <Icon name="lucide:user" class="w-5 h-5 text-black" />
           </div>
           <div 
             v-if="isDrawerExpanded || isMobile"
             class="flex-1 min-w-0 overflow-hidden"
           >
-            <p class="font-semibold text-clinic-text truncate">{{ user?.name }}</p>
-            <p class="text-xs text-clinic-text-muted">
+            <p class="font-semibold text-black truncate">{{ user?.name }}</p>
+            <p class="text-xs text-black">
               {{ user?.role === "ADMIN" ? "ຜູ້ດູແລລະບົບ" : "ພະນັກງານ" }}
             </p>
           </div>
         </div>
         <button
           @click="handleLogout"
-          class="w-full btn bg-red-50 text-red-500 hover:bg-red-100 border-0 text-sm"
+          class="w-full btn bg-red-50 text-black hover:bg-red-100 border-0 text-sm"
           :class="isDrawerExpanded || isMobile ? '' : 'px-2'"
         >
           <Icon name="lucide:log-out" class="w-4 h-4 shrink-0" />
@@ -231,7 +231,7 @@ onUnmounted(() => {
           <!-- Left: Menu Toggle -->
           <button
             @click="toggleDrawer"
-            class="p-2 rounded-xl hover:bg-clinic-muted transition-colors text-clinic-text"
+            class="p-2 rounded-xl hover:bg-clinic-muted transition-colors text-black"
           >
             <Icon 
               :name="!isMobile && !isDrawerExpanded ? 'lucide:panel-left-open' : 'lucide:panel-left-close'" 
@@ -247,15 +247,15 @@ onUnmounted(() => {
             <!-- User Badge -->
             <div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-clinic-muted rounded-full">
               <div class="w-7 h-7 rounded-full bg-gradient-to-br from-clinic-accent to-clinic-cyan flex items-center justify-center">
-                <span class="text-xs font-bold text-white">{{ user?.name?.charAt(0) || 'A' }}</span>
+                <span class="text-xs font-bold text-black">{{ user?.name?.charAt(0) || 'A' }}</span>
               </div>
-              <span class="text-sm font-medium text-clinic-text">{{ user?.name || 'Admin' }}</span>
+              <span class="text-sm font-medium text-black">{{ user?.name || 'Admin' }}</span>
             </div>
 
             <!-- Quick Actions -->
             <NuxtLink
               to="/pos"
-              class="btn bg-gradient-to-r from-clinic-pink to-fuchsia-500 text-white btn-sm shadow-lg shadow-pink-500/25"
+              class="btn bg-gradient-to-r from-clinic-pink to-fuchsia-500 text-black btn-sm shadow-lg shadow-pink-500/25"
             >
               <Icon name="lucide:plus" class="w-4 h-4" />
               <span class="hidden sm:inline">ຂາຍສິນຄ້າ</span>

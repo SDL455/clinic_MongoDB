@@ -29,7 +29,7 @@ const endItem = computed(() => {
 
 <template>
   <div v-if="totalPages > 1" class="flex items-center justify-between px-4 py-3 border-t border-clinic-border">
-    <div class="text-sm text-gray-400">
+    <div class="text-sm text-black">
       ສະແດງ {{ startItem }}-{{ endItem }} ຈາກ {{ total }} ລາຍການ
     </div>
     <div class="flex items-center gap-2">
@@ -49,8 +49,8 @@ const endItem = computed(() => {
           class="px-3 py-1 rounded-lg border transition-colors"
           :class="
             page === currentPage
-              ? 'bg-clinic-accent text-white border-clinic-accent'
-              : 'border-clinic-border hover:bg-clinic-dark text-gray-300'
+              ? 'bg-clinic-accent text-black border-clinic-accent'
+              : 'border-clinic-border hover:bg-clinic-dark text-black'
           "
         >
           {{ page }}

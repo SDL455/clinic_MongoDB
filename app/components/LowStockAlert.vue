@@ -285,12 +285,12 @@ onMounted(() => {
     <button
       @click="isOpen = !isOpen"
       class="relative p-2 rounded-lg hover:bg-clinic-dark transition-colors"
-      :class="{ 'text-amber-400': lowStockProducts.length > 0 }"
+      :class="{ 'text-black': lowStockProducts.length > 0 }"
     >
       <Icon name="lucide:bell" class="w-5 h-5" />
       <span
         v-if="lowStockProducts.length > 0"
-        class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-xs text-white flex items-center justify-center animate-pulse"
+        class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full text-xs text-black flex items-center justify-center animate-pulse"
       >
         {{ lowStockProducts.length > 9 ? "9+" : lowStockProducts.length }}
       </span>
@@ -303,22 +303,22 @@ onMounted(() => {
         class="absolute right-0 mt-2 w-80 bg-clinic-surface rounded-xl border border-clinic-border shadow-2xl overflow-hidden z-50"
       >
         <div class="p-4 border-b border-clinic-border">
-          <h3 class="font-medium text-white flex items-center gap-2">
-            <Icon name="lucide:alert-triangle" class="w-4 h-4 text-amber-400" />
+          <h3 class="font-medium text-black flex items-center gap-2">
+            <Icon name="lucide:alert-triangle" class="w-4 h-4 text-black" />
             ແຈ້ງເຕືອນ Stock ໃກ້ໝົດ
           </h3>
         </div>
 
         <div class="max-h-80 overflow-y-auto">
-          <div v-if="isLoading" class="p-4 text-center text-gray-400">
+          <div v-if="isLoading" class="p-4 text-center text-black">
             <Icon name="lucide:loader-2" class="w-6 h-6 animate-spin mx-auto" />
           </div>
 
           <div
             v-else-if="lowStockProducts.length === 0"
-            class="p-4 text-center text-gray-400"
+            class="p-4 text-center text-black"
           >
-            <Icon name="lucide:package-check" class="w-8 h-8 mx-auto mb-2 text-emerald-400" />
+            <Icon name="lucide:package-check" class="w-8 h-8 mx-auto mb-2 text-black" />
             <p class="text-sm">ບໍ່ມີສິນຄ້າທີ່ Stock ໃກ້ໝົດ</p>
           </div>
 
@@ -333,8 +333,8 @@ onMounted(() => {
                 class="w-10 h-10 rounded-lg flex items-center justify-center"
                 :class="
                   product.stock === 0
-                    ? 'bg-red-500/20 text-red-400'
-                    : 'bg-amber-500/20 text-amber-400'
+                    ? 'bg-red-500/20 text-black'
+                    : 'bg-amber-500/20 text-black'
                 "
               >
                 <Icon
@@ -343,14 +343,14 @@ onMounted(() => {
                 />
               </div>
               <div class="flex-1 min-w-0">
-                <p class="text-sm font-medium text-white truncate">
+                <p class="text-sm font-medium text-black truncate">
                   {{ product.name }}
                 </p>
-                <p class="text-xs text-gray-400">
+                <p class="text-xs text-black">
                   ຍັງເຫຼືອ:
                   <span
                     :class="
-                      product.stock === 0 ? 'text-red-400' : 'text-amber-400'
+                      product.stock === 0 ? 'text-black' : 'text-black'
                     "
                   >
                     {{ product.stock }} {{ product.category?.unit || "ອັນ" }}
@@ -370,7 +370,7 @@ onMounted(() => {
 
         <NuxtLink
           to="/products?filter=low-stock"
-          class="block p-3 text-center text-sm text-clinic-accent hover:bg-clinic-dark transition-colors border-t border-clinic-border"
+          class="block p-3 text-center text-sm text-black hover:bg-clinic-dark transition-colors border-t border-clinic-border"
           @click="isOpen = false"
         >
           ເບິ່ງທັງໝົດ
@@ -391,7 +391,7 @@ onMounted(() => {
         <div>
           <label class="input-label">ຊື່ສິນຄ້າ *</label>
           <input v-model="form.name" type="text" class="input" :class="{ 'border-red-500': errors.name }" required />
-          <p v-if="errors.name" class="text-red-400 text-sm mt-1">{{ errors.name }}</p>
+          <p v-if="errors.name" class="text-black text-sm mt-1">{{ errors.name }}</p>
         </div>
 
         <div>
@@ -407,14 +407,14 @@ onMounted(() => {
               {{ cat.name }} ({{ cat.unit }})
             </option>
           </select>
-          <p v-if="errors.categoryId" class="text-red-400 text-sm mt-1">{{ errors.categoryId }}</p>
+          <p v-if="errors.categoryId" class="text-black text-sm mt-1">{{ errors.categoryId }}</p>
         </div>
 
         <div class="grid grid-cols-2 gap-4">
           <div>
             <label class="input-label">ລາຄາຂາຍ *</label>
             <input v-model.number="form.price" type="number" class="input" :class="{ 'border-red-500': errors.price }" required min="0" />
-            <p v-if="errors.price" class="text-red-400 text-sm mt-1">{{ errors.price }}</p>
+            <p v-if="errors.price" class="text-black text-sm mt-1">{{ errors.price }}</p>
           </div>
           <div>
             <label class="input-label">ລາຄາຕົ້ນທຶນ</label>
@@ -451,7 +451,7 @@ onMounted(() => {
                   @click="removeExistingImage(index)"
                   class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
                 >
-                  <Icon name="lucide:trash-2" class="w-5 h-5 text-red-400" />
+                  <Icon name="lucide:trash-2" class="w-5 h-5 text-black" />
                 </button>
               </div>
               <!-- New Images -->
@@ -466,7 +466,7 @@ onMounted(() => {
                   @click="removeImage(index)"
                   class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
                 >
-                  <Icon name="lucide:trash-2" class="w-5 h-5 text-red-400" />
+                  <Icon name="lucide:trash-2" class="w-5 h-5 text-black" />
                 </button>
               </div>
             </div>
@@ -491,12 +491,12 @@ onMounted(() => {
                 <Icon name="lucide:upload" class="w-4 h-4" />
                 ເພີ່ມຮູບພາບ
               </button>
-              <span class="text-sm text-gray-400">
+              <span class="text-sm text-black">
                 ({{ previewUrls.length + existingImages.length }}/10)
               </span>
             </div>
-            <p v-if="errors.images" class="text-red-400 text-sm">{{ errors.images }}</p>
-            <p v-else-if="previewUrls.length + existingImages.length >= 10" class="text-amber-400 text-sm">
+            <p v-if="errors.images" class="text-black text-sm">{{ errors.images }}</p>
+            <p v-else-if="previewUrls.length + existingImages.length >= 10" class="text-black text-sm">
               ເຖິງຈຳນວນສູງສຸດແລ້ວ (10 ຮູບ)
             </p>
           </div>

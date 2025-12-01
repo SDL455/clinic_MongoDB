@@ -365,19 +365,19 @@ onUnmounted(() => {
           <tbody>
             <tr v-if="isLoading">
               <td colspan="6" class="text-center py-8">
-                <Icon name="lucide:loader-2" class="w-6 h-6 animate-spin mx-auto text-clinic-accent" />
+                <Icon name="lucide:loader-2" class="w-6 h-6 animate-spin mx-auto text-black" />
               </td>
             </tr>
             <tr v-else-if="products.length === 0">
-              <td colspan="6" class="text-center py-8 text-gray-400">
+              <td colspan="6" class="text-center py-8 text-black">
                 ບໍ່ມີສິນຄ້າ
               </td>
             </tr>
             <tr v-for="product in products" :key="product.id">
               <td>
                 <div>
-                  <p class="font-medium text-white">{{ product.name }}</p>
-                  <p v-if="product.description" class="text-sm text-gray-500 truncate max-w-xs">
+                  <p class="font-medium text-black">{{ product.name }}</p>
+                  <p v-if="product.description" class="text-sm text-black truncate max-w-xs">
                     {{ product.description }}
                   </p>
                 </div>
@@ -394,10 +394,10 @@ onUnmounted(() => {
                 <span
                   :class="
                     product.stock === 0
-                      ? 'text-red-400'
+                      ? 'text-black'
                       : product.stock <= product.minStock
-                      ? 'text-amber-400'
-                      : 'text-white'
+                      ? 'text-black'
+                      : 'text-black'
                   "
                 >
                   {{ product.stock }} {{ product.category?.unit }}
@@ -422,13 +422,13 @@ onUnmounted(() => {
                 <div class="flex items-center justify-end gap-2">
                   <button
                     @click="openEditModal(product)"
-                    class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-gray-400 hover:text-white"
+                    class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-black hover:text-black"
                   >
                     <Icon name="lucide:pencil" class="w-4 h-4" />
                   </button>
                   <button
                     @click="deleteProduct(product)"
-                    class="p-2 hover:bg-red-500/20 rounded-lg transition-colors text-gray-400 hover:text-red-400"
+                    class="p-2 hover:bg-red-500/20 rounded-lg transition-colors text-black hover:text-black"
                   >
                     <Icon name="lucide:trash-2" class="w-4 h-4" />
                   </button>
@@ -446,7 +446,7 @@ onUnmounted(() => {
         <div>
           <label class="input-label">ຊື່ສິນຄ້າ *</label>
           <input v-model="form.name" type="text" class="input" :class="{ 'border-red-500': errors.name }" required />
-          <p v-if="errors.name" class="text-red-400 text-sm mt-1">{{ errors.name }}</p>
+          <p v-if="errors.name" class="text-black text-sm mt-1">{{ errors.name }}</p>
         </div>
 
         <div>
@@ -462,14 +462,14 @@ onUnmounted(() => {
               {{ cat.name }} ({{ cat.unit }})
             </option>
           </select>
-          <p v-if="errors.categoryId" class="text-red-400 text-sm mt-1">{{ errors.categoryId }}</p>
+          <p v-if="errors.categoryId" class="text-black text-sm mt-1">{{ errors.categoryId }}</p>
         </div>
 
         <div class="grid grid-cols-2 gap-4">
           <div>
             <label class="input-label">ລາຄາຂາຍ *</label>
             <input v-model.number="form.price" type="number" class="input" :class="{ 'border-red-500': errors.price }" required min="0" />
-            <p v-if="errors.price" class="text-red-400 text-sm mt-1">{{ errors.price }}</p>
+            <p v-if="errors.price" class="text-black text-sm mt-1">{{ errors.price }}</p>
           </div>
           <div>
             <label class="input-label">ລາຄາຕົ້ນທຶນ</label>
@@ -506,7 +506,7 @@ onUnmounted(() => {
                   @click="removeExistingImage(index)"
                   class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
                 >
-                  <Icon name="lucide:trash-2" class="w-5 h-5 text-red-400" />
+                  <Icon name="lucide:trash-2" class="w-5 h-5 text-black" />
                 </button>
               </div>
               <!-- New Images -->
@@ -521,7 +521,7 @@ onUnmounted(() => {
                   @click="removeImage(index)"
                   class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
                 >
-                  <Icon name="lucide:trash-2" class="w-5 h-5 text-red-400" />
+                  <Icon name="lucide:trash-2" class="w-5 h-5 text-black" />
                 </button>
               </div>
             </div>
@@ -546,12 +546,12 @@ onUnmounted(() => {
                 <Icon name="lucide:upload" class="w-4 h-4" />
                 ເພີ່ມຮູບພາບ
               </button>
-              <span class="text-sm text-gray-400">
+              <span class="text-sm text-black">
                 ({{ previewUrls.length + existingImages.length }}/10)
               </span>
             </div>
-            <p v-if="errors.images" class="text-red-400 text-sm">{{ errors.images }}</p>
-            <p v-else-if="previewUrls.length + existingImages.length >= 10" class="text-amber-400 text-sm">
+            <p v-if="errors.images" class="text-black text-sm">{{ errors.images }}</p>
+            <p v-else-if="previewUrls.length + existingImages.length >= 10" class="text-black text-sm">
               ເຖິງຈຳນວນສູງສຸດແລ້ວ (10 ຮູບ)
             </p>
           </div>

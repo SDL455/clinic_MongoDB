@@ -103,7 +103,7 @@ onMounted(() => {
 
     <!-- Loading State -->
     <div v-if="isLoading" class="flex items-center justify-center h-64">
-      <Icon name="lucide:loader-2" class="w-10 h-10 animate-spin text-clinic-accent" />
+      <Icon name="lucide:loader-2" class="w-10 h-10 animate-spin text-black" />
     </div>
 
     <template v-else>
@@ -162,8 +162,8 @@ onMounted(() => {
       <!-- Recent Sales (Admin Only) -->
       <div v-if="isAdmin" class="card">
         <div class="card-header flex items-center justify-between">
-          <h3 class="font-semibold text-white">ການຂາຍຫຼ້າສຸດ</h3>
-          <NuxtLink to="/sales" class="text-sm text-clinic-accent hover:underline">
+          <h3 class="font-semibold text-black">ການຂາຍຫຼ້າສຸດ</h3>
+          <NuxtLink to="/sales" class="text-sm text-black hover:underline">
             ເບິ່ງທັງໝົດ
           </NuxtLink>
         </div>
@@ -180,7 +180,7 @@ onMounted(() => {
             </thead>
             <tbody>
               <tr v-if="recentSales.length === 0">
-                <td colspan="5" class="text-center py-8 text-gray-400">
+                <td colspan="5" class="text-center py-8 text-black">
                   ບໍ່ມີການຂາຍຫຼ້າສຸດ
                 </td>
               </tr>
@@ -190,7 +190,7 @@ onMounted(() => {
                 class="cursor-pointer"
                 @click="navigateTo(`/sales/${sale.id}`)"
               >
-                <td class="font-mono text-clinic-accent">
+                <td class="font-mono text-black">
                   {{ sale.invoiceNumber }}
                 </td>
                 <td>
@@ -202,7 +202,7 @@ onMounted(() => {
                     {{ getStatusBadge(sale.status).label }}
                   </span>
                 </td>
-                <td class="text-gray-400">{{ formatDate(sale.createdAt) }}</td>
+                <td class="text-black">{{ formatDate(sale.createdAt) }}</td>
               </tr>
             </tbody>
           </table>

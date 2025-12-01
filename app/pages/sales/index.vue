@@ -134,7 +134,7 @@ onMounted(() => {
         <div class="relative">
           <Icon
             name="lucide:search"
-            class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500"
+            class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-black"
           />
           <input
             v-model="search"
@@ -170,11 +170,11 @@ onMounted(() => {
           <tbody>
             <tr v-if="isLoading">
               <td colspan="7" class="text-center py-8">
-                <Icon name="lucide:loader-2" class="w-6 h-6 animate-spin mx-auto text-clinic-accent" />
+                <Icon name="lucide:loader-2" class="w-6 h-6 animate-spin mx-auto text-black" />
               </td>
             </tr>
             <tr v-else-if="sales.length === 0">
-              <td colspan="7" class="text-center py-8 text-gray-400">
+              <td colspan="7" class="text-center py-8 text-black">
                 ບໍ່ມີການຂາຍ
               </td>
             </tr>
@@ -184,26 +184,26 @@ onMounted(() => {
               class="cursor-pointer"
               @click="navigateTo(`/sales/${sale.id}`)"
             >
-              <td class="font-mono text-clinic-accent">
+              <td class="font-mono text-black">
                 {{ sale.invoiceNumber }}
               </td>
               <td>
                 <div class="flex items-center gap-2">
                   <div class="w-8 h-8 rounded-full bg-clinic-accent/20 flex items-center justify-center">
-                    <Icon name="lucide:user" class="w-4 h-4 text-clinic-accent" />
+                    <Icon name="lucide:user" class="w-4 h-4 text-black" />
                   </div>
                   <div>
-                    <p class="font-medium text-white">
+                    <p class="font-medium text-black">
                       {{ sale.customer?.firstName }} {{ sale.customer?.lastName }}
                     </p>
-                    <p class="text-xs text-gray-500">{{ sale.customer?.phone }}</p>
+                    <p class="text-xs text-black">{{ sale.customer?.phone }}</p>
                   </div>
                 </div>
               </td>
-              <td class="text-gray-400">
+              <td class="text-black">
                 {{ sale.items?.length || 0 }} ລາຍການ
               </td>
-              <td class="text-right font-semibold text-white">
+              <td class="text-right font-semibold text-black">
                 {{ formatCurrency(sale.total) }}
               </td>
               <td @click.stop>
@@ -217,20 +217,20 @@ onMounted(() => {
                   <option value="TRANSFER">ໂອນ</option>
                 </select>
               </td>
-              <td class="text-gray-400 text-sm">
+              <td class="text-black text-sm">
                 {{ formatDate(sale.createdAt) }}
               </td>
               <td class="text-right" @click.stop>
                 <div class="flex items-center justify-end gap-2">
                   <NuxtLink
                     :to="`/sales/${sale.id}`"
-                    class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-gray-400 hover:text-white"
+                    class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-black hover:text-black"
                   >
                     <Icon name="lucide:eye" class="w-4 h-4" />
                   </NuxtLink>
                   <NuxtLink
                     :to="`/sales/${sale.id}?print=true`"
-                    class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-gray-400 hover:text-white"
+                    class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-black hover:text-black"
                   >
                     <Icon name="lucide:printer" class="w-4 h-4" />
                   </NuxtLink>

@@ -147,7 +147,7 @@ onMounted(() => {
     <div v-if="isLoading" class="flex items-center justify-center h-64">
       <Icon
         name="lucide:loader-2"
-        class="w-10 h-10 animate-spin text-clinic-accent"
+        class="w-10 h-10 animate-spin text-black"
       />
     </div>
 
@@ -176,11 +176,11 @@ onMounted(() => {
 
       <!-- Chart -->
       <div class="card p-6 mb-6">
-        <h3 class="font-semibold text-white mb-6">ກຣາຟລາຍຮັບ</h3>
+        <h3 class="font-semibold text-black mb-6">ກຣາຟລາຍຮັບ</h3>
 
         <div
           v-if="reportData.report.length === 0"
-          class="text-center py-12 text-gray-400"
+          class="text-center py-12 text-black"
         >
           <Icon
             name="lucide:bar-chart-2"
@@ -195,7 +195,7 @@ onMounted(() => {
             :key="item.period"
             class="flex items-center gap-4"
           >
-            <div class="w-24 text-sm text-gray-400 shrink-0">
+            <div class="w-24 text-sm text-black shrink-0">
               {{ formatPeriod(item.period) }}
             </div>
             <div class="flex-1 h-8 bg-clinic-dark rounded-lg overflow-hidden">
@@ -204,10 +204,10 @@ onMounted(() => {
                 :style="{ width: `${(item.revenue / maxRevenue) * 100}%` }"
               />
             </div>
-            <div class="w-32 text-right font-semibold text-white shrink-0">
+            <div class="w-32 text-right font-semibold text-black shrink-0">
               {{ formatCurrency(item.revenue) }}
             </div>
-            <div class="w-16 text-right text-gray-500 text-sm shrink-0">
+            <div class="w-16 text-right text-black text-sm shrink-0">
               {{ item.count }} ຄັ້ງ
             </div>
           </div>
@@ -217,7 +217,7 @@ onMounted(() => {
       <!-- Table -->
       <div class="card">
         <div class="card-header">
-          <h3 class="font-semibold text-white">ຕາຕະລາງລາຍລະອຽດ</h3>
+          <h3 class="font-semibold text-black">ຕາຕະລາງລາຍລະອຽດ</h3>
         </div>
         <div class="table-container border-0">
           <table class="table">
@@ -231,19 +231,19 @@ onMounted(() => {
             </thead>
             <tbody>
               <tr v-if="reportData.report.length === 0">
-                <td colspan="4" class="text-center py-8 text-gray-400">
+                <td colspan="4" class="text-center py-8 text-black">
                   ບໍ່ມີຂໍ້ມູນ
                 </td>
               </tr>
               <tr v-for="item in reportData.report" :key="item.period">
-                <td class="font-medium text-white">
+                <td class="font-medium text-black">
                   {{ formatPeriod(item.period) }}
                 </td>
-                <td class="text-right font-semibold text-clinic-accent">
+                <td class="text-right font-semibold text-black">
                   {{ formatCurrency(item.revenue) }}
                 </td>
-                <td class="text-right text-gray-400">{{ item.count }}</td>
-                <td class="text-right text-gray-400">
+                <td class="text-right text-black">{{ item.count }}</td>
+                <td class="text-right text-black">
                   {{
                     formatCurrency(
                       item.count > 0 ? item.revenue / item.count : 0
@@ -254,14 +254,14 @@ onMounted(() => {
             </tbody>
             <tfoot>
               <tr class="bg-clinic-dark">
-                <td class="font-bold text-white">ລວມ</td>
-                <td class="text-right font-bold text-clinic-accent">
+                <td class="font-bold text-black">ລວມ</td>
+                <td class="text-right font-bold text-black">
                   {{ formatCurrency(reportData.summary.totalRevenue) }}
                 </td>
-                <td class="text-right font-bold text-white">
+                <td class="text-right font-bold text-black">
                   {{ reportData.summary.totalCount }}
                 </td>
-                <td class="text-right font-bold text-white">
+                <td class="text-right font-bold text-black">
                   {{ formatCurrency(reportData.summary.avgPerSale) }}
                 </td>
               </tr>

@@ -122,7 +122,7 @@ onMounted(() => {
 
     <!-- Services Grid -->
     <div v-if="isLoading" class="flex items-center justify-center h-64">
-      <Icon name="lucide:loader-2" class="w-10 h-10 animate-spin text-clinic-accent" />
+      <Icon name="lucide:loader-2" class="w-10 h-10 animate-spin text-black" />
     </div>
 
     <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -133,31 +133,31 @@ onMounted(() => {
       >
         <div class="flex items-start justify-between mb-4">
           <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center">
-            <Icon name="lucide:heart-handshake" class="w-6 h-6 text-pink-400" />
+            <Icon name="lucide:heart-handshake" class="w-6 h-6 text-black" />
           </div>
           <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
             <button
               @click="openEditModal(service)"
-              class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-gray-400 hover:text-white"
+              class="p-2 hover:bg-clinic-dark rounded-lg transition-colors text-black hover:text-black"
             >
               <Icon name="lucide:pencil" class="w-4 h-4" />
             </button>
             <button
               @click="deleteService(service)"
-              class="p-2 hover:bg-red-500/20 rounded-lg transition-colors text-gray-400 hover:text-red-400"
+              class="p-2 hover:bg-red-500/20 rounded-lg transition-colors text-black hover:text-black"
             >
               <Icon name="lucide:trash-2" class="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        <h3 class="text-lg font-semibold text-white mb-2">{{ service.name }}</h3>
-        <p v-if="service.description" class="text-gray-400 text-sm mb-4 line-clamp-2">
+        <h3 class="text-lg font-semibold text-black mb-2">{{ service.name }}</h3>
+        <p v-if="service.description" class="text-black text-sm mb-4 line-clamp-2">
           {{ service.description }}
         </p>
 
         <div class="pt-4 border-t border-clinic-border">
-          <p class="text-2xl font-bold text-clinic-accent">
+          <p class="text-2xl font-bold text-black">
             {{ formatCurrency(service.price) }}
           </p>
         </div>
@@ -166,7 +166,7 @@ onMounted(() => {
       <!-- Empty State -->
       <div
         v-if="services.length === 0"
-        class="col-span-full text-center py-12 text-gray-400"
+        class="col-span-full text-center py-12 text-black"
       >
         <Icon name="lucide:heart-handshake" class="w-12 h-12 mx-auto mb-3 opacity-50" />
         <p>ບໍ່ມີບໍລິການ</p>

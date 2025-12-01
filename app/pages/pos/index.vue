@@ -415,8 +415,8 @@ onMounted(() => {
               class="flex-1 px-4 py-3 font-medium transition-colors"
               :class="
                 activeTab === 'products'
-                  ? 'text-clinic-accent border-b-2 border-clinic-accent'
-                  : 'text-gray-400 hover:text-white'
+                  ? 'text-black border-b-2 border-clinic-accent'
+                  : 'text-black hover:text-black'
               "
             >
               <Icon name="lucide:package" class="w-4 h-4 inline mr-2" />
@@ -427,8 +427,8 @@ onMounted(() => {
               class="flex-1 px-4 py-3 font-medium transition-colors"
               :class="
                 activeTab === 'services'
-                  ? 'text-clinic-accent border-b-2 border-clinic-accent'
-                  : 'text-gray-400 hover:text-white'
+                  ? 'text-black border-b-2 border-clinic-accent'
+                  : 'text-black hover:text-black'
               "
             >
               <Icon name="lucide:heart-handshake" class="w-4 h-4 inline mr-2" />
@@ -449,7 +449,7 @@ onMounted(() => {
           <!-- Items Grid -->
           <div class="flex-1 overflow-y-auto p-4">
             <div v-if="isLoading" class="flex items-center justify-center h-full">
-              <Icon name="lucide:loader-2" class="w-8 h-8 animate-spin text-clinic-accent" />
+              <Icon name="lucide:loader-2" class="w-8 h-8 animate-spin text-black" />
             </div>
 
             <!-- Products -->
@@ -465,15 +465,15 @@ onMounted(() => {
                 class="p-4 rounded-xl bg-gray-100 border border-gray-300 hover:border-clinic-accent transition-all text-left group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-gray-300"
               >
                 <div class="flex items-center justify-between mb-2">
-                  <span class="text-xs text-gray-600">
+                  <span class="text-xs text-black">
                     {{ product.category?.name }}
                   </span>
                   <span
                     class="text-xs"
                     :class="
                       product.stock <= product.minStock
-                        ? 'text-amber-600'
-                        : 'text-gray-600'
+                        ? 'text-black'
+                        : 'text-black'
                     "
                   >
                     {{ product.stock }}
@@ -482,14 +482,14 @@ onMounted(() => {
                 <p class="font-medium text-black line-clamp-2 text-sm">
                   {{ product.name }}
                 </p>
-                <p class="text-clinic-accent font-semibold mt-2">
+                <p class="text-black font-semibold mt-2">
                   {{ formatCurrency(product.price) }}
                 </p>
               </button>
 
               <div
                 v-if="filteredProducts.length === 0"
-                class="col-span-full text-center py-8 text-gray-400"
+                class="col-span-full text-center py-8 text-black"
               >
                 ບໍ່ພົບສິນຄ້າ
               </div>
@@ -507,18 +507,18 @@ onMounted(() => {
                 :disabled="!selectedCustomer"
                 class="p-4 rounded-xl bg-gray-100 border border-gray-300 hover:border-pink-500 transition-all text-left group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-gray-300"
               >
-                <Icon name="lucide:heart-handshake" class="w-5 h-5 text-pink-500 mb-2" />
+                <Icon name="lucide:heart-handshake" class="w-5 h-5 text-black mb-2" />
                 <p class="font-medium text-black line-clamp-2 text-sm">
                   {{ service.name }}
                 </p>
-                <p class="text-pink-500 font-semibold mt-2">
+                <p class="text-black font-semibold mt-2">
                   {{ formatCurrency(service.price) }}
                 </p>
               </button>
 
               <div
                 v-if="filteredServices.length === 0"
-                class="col-span-full text-center py-8 text-gray-400"
+                class="col-span-full text-center py-8 text-black"
               >
                 ບໍ່ພົບບໍລິການ
               </div>
@@ -535,17 +535,17 @@ onMounted(() => {
             <label class="input-label">ລູກຄ້າ</label>
             <div v-if="selectedCustomer" class="flex items-center gap-3 p-3 bg-clinic-dark rounded-lg">
               <div class="w-10 h-10 rounded-full bg-clinic-accent/20 flex items-center justify-center">
-                <Icon name="lucide:user" class="w-5 h-5 text-clinic-accent" />
+                <Icon name="lucide:user" class="w-5 h-5 text-black" />
               </div>
               <div class="flex-1">
-                <p class="font-medium text-white">
+                <p class="font-medium text-black">
                   {{ selectedCustomer.firstName }} {{ selectedCustomer.lastName }}
                 </p>
-                <p class="text-sm text-gray-400">{{ selectedCustomer.phone }}</p>
+                <p class="text-sm text-black">{{ selectedCustomer.phone }}</p>
               </div>
               <button
                 @click="selectedCustomer = null"
-                class="text-gray-400 hover:text-red-400"
+                class="text-black hover:text-black"
               >
                 <Icon name="lucide:x" class="w-5 h-5" />
               </button>
@@ -569,7 +569,7 @@ onMounted(() => {
 
           <!-- Cart Items -->
           <div class="flex-1 overflow-y-auto p-4">
-            <div v-if="cart.items.value.length === 0" class="text-center py-8 text-gray-400">
+            <div v-if="cart.items.value.length === 0" class="text-center py-8 text-black">
               <Icon name="lucide:shopping-cart" class="w-12 h-12 mx-auto mb-3 opacity-50" />
               <p>ກະຕ່າວ່າງເປົ່າ</p>
             </div>
@@ -581,8 +581,8 @@ onMounted(() => {
                 class="flex items-center gap-3 p-3 bg-clinic-dark rounded-lg"
               >
                 <div class="flex-1 min-w-0">
-                  <p class="font-medium text-white truncate">{{ item.name }}</p>
-                  <p class="text-sm text-gray-400">
+                  <p class="font-medium text-black truncate">{{ item.name }}</p>
+                  <p class="text-sm text-black">
                     {{ formatCurrency(item.price) }} x {{ item.quantity }}
                   </p>
                 </div>
@@ -601,12 +601,12 @@ onMounted(() => {
                     <Icon name="lucide:plus" class="w-4 h-4" />
                   </button>
                 </div>
-                <p class="font-semibold text-clinic-accent w-24 text-right">
+                <p class="font-semibold text-black w-24 text-right">
                   {{ formatCurrency(item.total) }}
                 </p>
                 <button
                   @click="cart.removeItem(item.id)"
-                  class="text-gray-400 hover:text-red-400"
+                  class="text-black hover:text-black"
                 >
                   <Icon name="lucide:x" class="w-4 h-4" />
                 </button>
@@ -641,11 +641,11 @@ onMounted(() => {
                 :class="
                   paymentStatus === status
                     ? status === 'PAID'
-                      ? 'bg-emerald-500 text-white'
+                      ? 'bg-emerald-500 text-black'
                       : status === 'TRANSFER'
-                      ? 'bg-cyan-500 text-white'
-                      : 'bg-amber-500 text-white'
-                    : 'bg-clinic-dark text-gray-400 hover:text-white'
+                      ? 'bg-cyan-500 text-black'
+                      : 'bg-amber-500 text-black'
+                    : 'bg-clinic-dark text-black hover:text-black'
                 "
               >
                 {{ status === "PAID" ? "ຈ່າຍ" : status === "TRANSFER" ? "ໂອນ" : "ບໍ່ຈ່າຍ" }}
@@ -655,17 +655,17 @@ onMounted(() => {
 
           <!-- Summary -->
           <div class="p-4 border-t border-clinic-border space-y-2">
-            <div class="flex justify-between text-gray-400">
+            <div class="flex justify-between text-black">
               <span>ຍອດລວມ</span>
               <span>{{ formatCurrency(cart.subtotal.value) }}</span>
             </div>
-            <div v-if="cart.discount.value > 0" class="flex justify-between text-amber-400">
+            <div v-if="cart.discount.value > 0" class="flex justify-between text-black">
               <span>ສ່ວນຫຼຸດ</span>
               <span>-{{ formatCurrency(cart.discount.value) }}</span>
             </div>
-            <div class="flex justify-between text-xl font-bold text-white pt-2 border-t border-clinic-border">
+            <div class="flex justify-between text-xl font-bold text-black pt-2 border-t border-clinic-border">
               <span>ທັງໝົດ</span>
-              <span class="text-clinic-accent">{{ formatCurrency(cart.total.value) }}</span>
+              <span class="text-black">{{ formatCurrency(cart.total.value) }}</span>
             </div>
           </div>
 
@@ -708,20 +708,20 @@ onMounted(() => {
             class="w-full p-3 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors text-left flex items-center gap-3"
           >
             <div class="w-10 h-10 rounded-full bg-clinic-accent/20 flex items-center justify-center">
-              <Icon name="lucide:user" class="w-5 h-5 text-clinic-accent" />
+              <Icon name="lucide:user" class="w-5 h-5 text-black" />
             </div>
             <div>
               <p class="font-medium text-black">
                 {{ customer.firstName }} {{ customer.lastName }}
               </p>
-              <p class="text-sm text-gray-600">{{ customer.phone }}</p>
+              <p class="text-sm text-black">{{ customer.phone }}</p>
             </div>
           </button>
 
-          <div v-if="customerSearch.length >= 2 && customers.length === 0" class="text-center py-4 text-gray-600">
+          <div v-if="customerSearch.length >= 2 && customers.length === 0" class="text-center py-4 text-black">
             ບໍ່ພົບລູກຄ້າ
           </div>
-          <div v-else-if="customerSearch.length < 2 && customers.length === 0" class="text-center py-4 text-gray-600">
+          <div v-else-if="customerSearch.length < 2 && customers.length === 0" class="text-center py-4 text-black">
             ບໍ່ມີລູກຄ້າລ່າສຸດ
           </div>
         </div>
@@ -761,7 +761,7 @@ onMounted(() => {
                 <Icon
                   v-else
                   name="lucide:image"
-                  class="w-8 h-8 text-gray-400"
+                  class="w-8 h-8 text-black"
                 />
               </div>
               <input
@@ -776,7 +776,7 @@ onMounted(() => {
                 type="button"
                 @click="removeFile"
                 class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 hover:bg-red-600 rounded-full 
-                       flex items-center justify-center text-white text-xs"
+                       flex items-center justify-center text-black text-xs"
               >
                 <Icon name="lucide:x" class="w-4 h-4" />
               </button>
@@ -790,7 +790,7 @@ onMounted(() => {
                 <Icon name="lucide:upload" class="w-4 h-4" />
                 ເລືອກຮູບພາບ
               </button>
-              <p class="text-xs text-gray-400 mt-2">
+              <p class="text-xs text-black mt-2">
                 PNG, JPG, GIF (ສູງສຸດ 5MB)
               </p>
             </div>
@@ -806,7 +806,7 @@ onMounted(() => {
               class="input"
               :class="{ 'input-error': errors.firstName }"
             />
-            <p v-if="errors.firstName" class="text-red-400 text-xs mt-1">
+            <p v-if="errors.firstName" class="text-black text-xs mt-1">
               {{ errors.firstName }}
             </p>
           </div>
@@ -818,7 +818,7 @@ onMounted(() => {
               class="input"
               :class="{ 'input-error': errors.lastName }"
             />
-            <p v-if="errors.lastName" class="text-red-400 text-xs mt-1">
+            <p v-if="errors.lastName" class="text-black text-xs mt-1">
               {{ errors.lastName }}
             </p>
           </div>
@@ -832,7 +832,7 @@ onMounted(() => {
             class="input"
             :class="{ 'input-error': errors.phone }"
           />
-          <p v-if="errors.phone" class="text-red-400 text-xs mt-1">
+          <p v-if="errors.phone" class="text-black text-xs mt-1">
             {{ errors.phone }}
           </p>
         </div>
@@ -849,7 +849,7 @@ onMounted(() => {
               {{ province }}
             </option>
           </select>
-          <p v-if="errors.province" class="text-red-400 text-xs mt-1">
+          <p v-if="errors.province" class="text-black text-xs mt-1">
             {{ errors.province }}
           </p>
         </div>
@@ -867,7 +867,7 @@ onMounted(() => {
               {{ district }}
             </option>
           </select>
-          <p v-if="errors.district" class="text-red-400 text-xs mt-1">
+          <p v-if="errors.district" class="text-black text-xs mt-1">
             {{ errors.district }}
           </p>
         </div>
@@ -881,7 +881,7 @@ onMounted(() => {
             placeholder="ປ້ອນຊື່ບ້ານ"
             :class="{ 'input-error': errors.village }"
           />
-          <p v-if="errors.village" class="text-red-400 text-xs mt-1">
+          <p v-if="errors.village" class="text-black text-xs mt-1">
             {{ errors.village }}
           </p>
         </div>
@@ -897,7 +897,7 @@ onMounted(() => {
             max="150"
             :class="{ 'input-error': errors.age }"
           />
-          <p v-if="errors.age" class="text-red-400 text-xs mt-1">
+          <p v-if="errors.age" class="text-black text-xs mt-1">
             {{ errors.age }}
           </p>
         </div>

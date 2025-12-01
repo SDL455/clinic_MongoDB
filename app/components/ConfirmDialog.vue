@@ -124,7 +124,7 @@ const iconName = computed(() => {
 }
 
 .icon-svg {
-  @apply w-8 h-8 text-white;
+  @apply w-8 h-8 text-black;
   font-weight: bold;
 }
 
@@ -135,13 +135,13 @@ const iconName = computed(() => {
 }
 
 .dialog-message {
-  @apply text-gray-900 text-base mb-1;
+  @apply text-black text-base mb-1;
   line-height: 1.5;
   font-weight: 500;
 }
 
 .dialog-subtitle {
-  @apply text-red-500 text-sm;
+  @apply text-black text-sm;
   line-height: 1.4;
 }
 
@@ -157,14 +157,14 @@ const iconName = computed(() => {
 }
 
 .dialog-btn-cancel {
-  @apply bg-white text-blue-500
+  @apply bg-white text-black
          hover:bg-gray-50 active:bg-gray-100;
   border: 2px solid #93c5fd;
   focus:ring-blue-300;
 }
 
 .dialog-btn-confirm {
-  @apply text-white
+  @apply text-black
          hover:opacity-90 active:opacity-80
          shadow-md hover:shadow-lg;
   background-color: #60a5fa;

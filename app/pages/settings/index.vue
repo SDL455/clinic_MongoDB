@@ -122,7 +122,7 @@ onMounted(async () => {
 
     <!-- Loading -->
     <div v-if="isLoading" class="flex justify-center py-20">
-      <Icon name="lucide:loader-2" class="w-8 h-8 animate-spin text-clinic-accent" />
+      <Icon name="lucide:loader-2" class="w-8 h-8 animate-spin text-black" />
     </div>
 
     <!-- Settings Form -->
@@ -130,8 +130,8 @@ onMounted(async () => {
       <form @submit.prevent="saveSettings" class="space-y-6">
         <!-- Logo Upload Section -->
         <div class="card p-6">
-          <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-            <Icon name="lucide:image" class="w-5 h-5 text-clinic-accent" />
+          <h3 class="text-lg font-semibold text-black mb-4 flex items-center gap-2">
+            <Icon name="lucide:image" class="w-5 h-5 text-black" />
             ໂລໂກ້ຄລີນິກ
           </h3>
 
@@ -153,7 +153,7 @@ onMounted(async () => {
                 <Icon
                   v-else
                   name="lucide:building-2"
-                  class="w-16 h-16 text-clinic-text-muted"
+                  class="w-16 h-16 text-black"
                 />
               </div>
               
@@ -163,7 +163,7 @@ onMounted(async () => {
                 type="button"
                 @click="removeFile"
                 class="absolute -top-2 -right-2 w-7 h-7 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center 
-                       text-white shadow-lg transition-all duration-200 opacity-0 group-hover:opacity-100"
+                       text-black shadow-lg transition-all duration-200 opacity-0 group-hover:opacity-100"
               >
                 <Icon name="lucide:x" class="w-4 h-4" />
               </button>
@@ -193,16 +193,16 @@ onMounted(async () => {
                 <Icon 
                   name="lucide:cloud-upload" 
                   class="w-10 h-10 mx-auto mb-3 transition-colors"
-                  :class="isDragging ? 'text-clinic-accent' : 'text-clinic-text-muted'"
+                  :class="isDragging ? 'text-black' : 'text-black'"
                 />
                 
-                <p class="text-sm text-clinic-text-muted mb-1">
+                <p class="text-sm text-black mb-1">
                   ລາກ ແລະ ວາງຮູບພາບທີ່ນີ້
                 </p>
-                <p class="text-xs text-clinic-text-muted">
-                  ຫຼື <span class="text-clinic-accent hover:underline">ຄລິກເພື່ອເລືອກ</span>
+                <p class="text-xs text-black">
+                  ຫຼື <span class="text-black hover:underline">ຄລິກເພື່ອເລືອກ</span>
                 </p>
-                <p class="text-xs text-clinic-text-muted mt-2">
+                <p class="text-xs text-black mt-2">
                   PNG, JPG, GIF (ສູງສຸດ 5MB)
                 </p>
               </div>
@@ -211,17 +211,17 @@ onMounted(async () => {
 
           <!-- Selected file info -->
           <div v-if="selectedFile" class="mt-4 p-3 bg-clinic-accent/10 rounded-lg flex items-center gap-3">
-            <Icon name="lucide:file-image" class="w-5 h-5 text-clinic-accent" />
+            <Icon name="lucide:file-image" class="w-5 h-5 text-black" />
             <div class="flex-1 min-w-0">
-              <p class="text-sm text-white truncate">{{ selectedFile.name }}</p>
-              <p class="text-xs text-clinic-text-muted">
+              <p class="text-sm text-black truncate">{{ selectedFile.name }}</p>
+              <p class="text-xs text-black">
                 {{ (selectedFile.size / 1024).toFixed(1) }} KB
               </p>
             </div>
             <button
               type="button"
               @click="removeFile"
-              class="p-1 hover:bg-red-500/20 rounded text-red-400 hover:text-red-300 transition-colors"
+              class="p-1 hover:bg-red-500/20 rounded text-black hover:text-black transition-colors"
             >
               <Icon name="lucide:trash-2" class="w-4 h-4" />
             </button>
@@ -230,8 +230,8 @@ onMounted(async () => {
 
         <!-- Clinic Info Section -->
         <div class="card p-6">
-          <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-            <Icon name="lucide:building" class="w-5 h-5 text-clinic-accent" />
+          <h3 class="text-lg font-semibold text-black mb-4 flex items-center gap-2">
+            <Icon name="lucide:building" class="w-5 h-5 text-black" />
             ຂໍ້ມູນຄລີນິກ
           </h3>
 
@@ -261,8 +261,8 @@ onMounted(async () => {
 
         <!-- Preview Card -->
         <div class="card p-6">
-          <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-            <Icon name="lucide:eye" class="w-5 h-5 text-clinic-accent" />
+          <h3 class="text-lg font-semibold text-black mb-4 flex items-center gap-2">
+            <Icon name="lucide:eye" class="w-5 h-5 text-black" />
             ຕົວຢ່າງ
           </h3>
           
@@ -275,11 +275,11 @@ onMounted(async () => {
                   alt="Preview"
                   class="w-full h-full object-cover"
                 />
-                <Icon v-else name="lucide:heart-pulse" class="w-7 h-7 text-white" />
+                <Icon v-else name="lucide:heart-pulse" class="w-7 h-7 text-black" />
               </div>
               <div>
-                <h1 class="font-bold text-white text-lg">{{ form.name || 'ຊື່ຄລີນິກ' }}</h1>
-                <p class="text-xs text-white/70">{{ form.subtitle || 'ຄຳບັນຍາຍ' }}</p>
+                <h1 class="font-bold text-black text-lg">{{ form.name || 'ຊື່ຄລີນິກ' }}</h1>
+                <p class="text-xs text-black/70">{{ form.subtitle || 'ຄຳບັນຍາຍ' }}</p>
               </div>
             </div>
           </div>

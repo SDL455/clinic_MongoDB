@@ -85,18 +85,18 @@ const getDiscountText = (promo: any) => {
     <header class="relative overflow-hidden bg-gradient-to-r from-clinic-primary via-clinic-secondary to-clinic-accent-purple">
       <div class="absolute inset-0 bg-black/5"></div>
       <div class="container mx-auto px-4 py-20 relative z-10">
-        <div class="max-w-4xl mx-auto text-center text-white">
+        <div class="max-w-4xl mx-auto text-center text-black">
           <div class="inline-flex items-center justify-center w-28 h-28 rounded-full bg-white/20 backdrop-blur-sm mb-6 shadow-2xl">
             <Icon name="lucide:heart-pulse" class="w-14 h-14 animate-pulse" />
           </div>
-          <h1 class="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg text-white">ຄລີນິກ ສຸຂະພາບດີ</h1>
-          <p class="text-xl text-white/90 mb-8">ໃຫ້ບໍລິການດ້ານສຸຂະພາບທີ່ມີຄຸນນະພາບດ້ວຍທີມງານມືອາຊີບ</p>
+          <h1 class="text-5xl md:text-6xl font-bold mb-4 drop-shadow-lg text-black">ຄລີນິກ ສຸຂະພາບດີ</h1>
+          <p class="text-xl text-black/90 mb-8">ໃຫ້ບໍລິການດ້ານສຸຂະພາບທີ່ມີຄຸນນະພາບດ້ວຍທີມງານມືອາຊີບ</p>
           <div class="flex flex-wrap justify-center gap-4">
-            <a href="#promotions" class="btn btn-lg bg-white text-clinic-primary hover:bg-white/90 shadow-2xl">
+            <a href="#promotions" class="btn btn-lg bg-white text-black hover:bg-white/90 shadow-2xl">
               <Icon name="lucide:megaphone" class="w-5 h-5" />
               <span>ໂປຣໂມຊັນ</span>
             </a>
-            <a href="#contact" class="btn btn-lg glass text-white hover:bg-white/30 shadow-2xl">
+            <a href="#contact" class="btn btn-lg glass text-black hover:bg-white/30 shadow-2xl">
               <Icon name="lucide:phone" class="w-5 h-5" />
               <span>ຕິດຕໍ່ເຮົາ</span>
             </a>
@@ -115,7 +115,7 @@ const getDiscountText = (promo: any) => {
       <!-- Loading State -->
       <div v-if="loading" class="text-center py-20">
         <div class="inline-block animate-spin rounded-full h-16 w-16 border-4 border-purple-200 border-t-purple-600"></div>
-        <p class="mt-4 text-gray-600">ກຳລັງໂຫຼດຂໍ້ມູນ...</p>
+        <p class="mt-4 text-black">ກຳລັງໂຫຼດຂໍ້ມູນ...</p>
       </div>
 
       <div v-else>
@@ -124,11 +124,11 @@ const getDiscountText = (promo: any) => {
           <div class="text-center mb-12">
             <div class="inline-flex items-center gap-3 mb-4">
               <div class="h-1 w-12 bg-gradient-to-r from-clinic-primary to-clinic-secondary rounded-full"></div>
-              <Icon name="lucide:megaphone" class="w-8 h-8 text-clinic-primary" />
+              <Icon name="lucide:megaphone" class="w-8 h-8 text-black" />
               <div class="h-1 w-12 bg-gradient-to-r from-clinic-secondary to-clinic-accent-purple rounded-full"></div>
             </div>
-            <h2 class="text-4xl font-bold text-clinic-text mb-3">ໂປຣໂມຊັນພິເສດ</h2>
-            <p class="text-clinic-text-muted">ລາຍການສ່ວນຫຼຸດແລະໂປຣໂມຊັນທີ່ກຳລັງມີຢູ່</p>
+            <h2 class="text-4xl font-bold text-black mb-3">ໂປຣໂມຊັນພິເສດ</h2>
+            <p class="text-black">ລາຍການສ່ວນຫຼຸດແລະໂປຣໂມຊັນທີ່ກຳລັງມີຢູ່</p>
           </div>
 
           <!-- Promotions Grid -->
@@ -143,22 +143,22 @@ const getDiscountText = (promo: any) => {
               
               <div class="relative p-6">
                 <!-- Discount Badge -->
-                <div class="absolute -top-2 -right-2 bg-gradient-to-br from-red-500 to-pink-500 text-white px-6 py-3 rounded-full font-bold text-xl shadow-lg transform rotate-12 group-hover:rotate-0 transition-transform">
+                <div class="absolute -top-2 -right-2 bg-gradient-to-br from-red-500 to-pink-500 text-black px-6 py-3 rounded-full font-bold text-xl shadow-lg transform rotate-12 group-hover:rotate-0 transition-transform">
                   {{ getDiscountText(promo) }}
                 </div>
 
                 <div class="mb-4">
-                  <Icon name="lucide:gift" class="w-12 h-12 text-purple-600 mb-3" />
-                  <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ promo.name }}</h3>
-                  <p class="text-gray-600 leading-relaxed">{{ promo.description }}</p>
+                  <Icon name="lucide:gift" class="w-12 h-12 text-black mb-3" />
+                  <h3 class="text-2xl font-bold text-black mb-2">{{ promo.name }}</h3>
+                  <p class="text-black leading-relaxed">{{ promo.description }}</p>
                 </div>
 
                 <div class="pt-4 border-t border-gray-100">
-                  <div class="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                  <div class="flex items-center gap-2 text-sm text-black mb-2">
                     <Icon name="lucide:calendar" class="w-4 h-4" />
                     <span>ເລີ່ມ: {{ formatDate(promo.startDate) }}</span>
                   </div>
-                  <div class="flex items-center gap-2 text-sm text-gray-500">
+                  <div class="flex items-center gap-2 text-sm text-black">
                     <Icon name="lucide:calendar-x" class="w-4 h-4" />
                     <span>ສິ້ນສຸດ: {{ formatDate(promo.endDate) }}</span>
                   </div>
@@ -169,8 +169,8 @@ const getDiscountText = (promo: any) => {
 
           <!-- No Promotions -->
           <div v-else class="text-center py-16 bg-white rounded-3xl shadow-lg">
-            <Icon name="lucide:package-x" class="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <p class="text-gray-500 text-lg">ຍັງບໍ່ມີໂປຣໂມຊັນໃນຕອນນີ້</p>
+            <Icon name="lucide:package-x" class="w-16 h-16 text-black mx-auto mb-4" />
+            <p class="text-black text-lg">ຍັງບໍ່ມີໂປຣໂມຊັນໃນຕອນນີ້</p>
           </div>
         </section>
 
@@ -179,19 +179,19 @@ const getDiscountText = (promo: any) => {
           <div class="text-center mb-12">
             <div class="inline-flex items-center gap-3 mb-4">
               <div class="h-1 w-12 bg-gradient-to-r from-clinic-primary to-clinic-accent rounded-full"></div>
-              <Icon name="lucide:map-pin" class="w-8 h-8 text-clinic-primary" />
+              <Icon name="lucide:map-pin" class="w-8 h-8 text-black" />
               <div class="h-1 w-12 bg-gradient-to-r from-clinic-accent to-clinic-secondary rounded-full"></div>
             </div>
-            <h2 class="text-4xl font-bold text-clinic-text mb-3">ຕິດຕໍ່ ແລະ ທີ່ຕັ້ງ</h2>
-            <p class="text-clinic-text-muted">ຂໍ້ມູນການຕິດຕໍ່ແລະທີ່ຕັ້ງຂອງເຮົາ</p>
+            <h2 class="text-4xl font-bold text-black mb-3">ຕິດຕໍ່ ແລະ ທີ່ຕັ້ງ</h2>
+            <p class="text-black">ຂໍ້ມູນການຕິດຕໍ່ແລະທີ່ຕັ້ງຂອງເຮົາ</p>
           </div>
 
           <div class="grid lg:grid-cols-2 gap-8">
             <!-- Contact Information -->
             <div class="bg-white rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-shadow">
-              <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+              <h3 class="text-2xl font-bold text-black mb-6 flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-                  <Icon name="lucide:contact" class="w-6 h-6 text-white" />
+                  <Icon name="lucide:contact" class="w-6 h-6 text-black" />
                 </div>
                 ຂໍ້ມູນຕິດຕໍ່
               </h3>
@@ -201,17 +201,17 @@ const getDiscountText = (promo: any) => {
                 <div v-if="contactInfo.phone && contactInfo.phone.length > 0" class="flex gap-4">
                   <div class="shrink-0">
                     <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
-                      <Icon name="lucide:phone" class="w-6 h-6 text-green-600" />
+                      <Icon name="lucide:phone" class="w-6 h-6 text-black" />
                     </div>
                   </div>
                   <div class="flex-1">
-                    <p class="font-semibold text-gray-800 mb-2">ເບີໂທ</p>
+                    <p class="font-semibold text-black mb-2">ເບີໂທ</p>
                     <div class="space-y-1">
                       <a 
                         v-for="(phone, idx) in contactInfo.phone" 
                         :key="idx"
                         :href="`tel:${phone.replace(/\s/g, '')}`"
-                        class="block text-green-600 hover:text-green-700 font-medium transition-colors"
+                        class="block text-black hover:text-black font-medium transition-colors"
                       >
                         {{ phone }}
                       </a>
@@ -223,12 +223,12 @@ const getDiscountText = (promo: any) => {
                 <div v-if="contactInfo.email" class="flex gap-4">
                   <div class="shrink-0">
                     <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
-                      <Icon name="lucide:mail" class="w-6 h-6 text-blue-600" />
+                      <Icon name="lucide:mail" class="w-6 h-6 text-black" />
                     </div>
                   </div>
                   <div class="flex-1">
-                    <p class="font-semibold text-gray-800 mb-2">ອີເມວ</p>
-                    <a :href="`mailto:${contactInfo.email}`" class="text-blue-600 hover:text-blue-700 font-medium transition-colors">
+                    <p class="font-semibold text-black mb-2">ອີເມວ</p>
+                    <a :href="`mailto:${contactInfo.email}`" class="text-black hover:text-black font-medium transition-colors">
                       {{ contactInfo.email }}
                     </a>
                   </div>
@@ -238,12 +238,12 @@ const getDiscountText = (promo: any) => {
                 <div v-if="contactInfo.facebook" class="flex gap-4">
                   <div class="shrink-0">
                     <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
-                      <Icon name="lucide:facebook" class="w-6 h-6 text-blue-600" />
+                      <Icon name="lucide:facebook" class="w-6 h-6 text-black" />
                     </div>
                   </div>
                   <div class="flex-1">
-                    <p class="font-semibold text-gray-800 mb-2">Facebook</p>
-                    <a :href="contactInfo.facebook" target="_blank" class="text-blue-600 hover:text-blue-700 font-medium transition-colors">
+                    <p class="font-semibold text-black mb-2">Facebook</p>
+                    <a :href="contactInfo.facebook" target="_blank" class="text-black hover:text-black font-medium transition-colors">
                       {{ contactInfo.facebook }}
                     </a>
                   </div>
@@ -253,12 +253,12 @@ const getDiscountText = (promo: any) => {
                 <div v-if="contactInfo.line" class="flex gap-4">
                   <div class="shrink-0">
                     <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center">
-                      <Icon name="lucide:message-circle" class="w-6 h-6 text-green-600" />
+                      <Icon name="lucide:message-circle" class="w-6 h-6 text-black" />
                     </div>
                   </div>
                   <div class="flex-1">
-                    <p class="font-semibold text-gray-800 mb-2">Line</p>
-                    <p class="text-gray-700 font-medium">{{ contactInfo.line }}</p>
+                    <p class="font-semibold text-black mb-2">Line</p>
+                    <p class="text-black font-medium">{{ contactInfo.line }}</p>
                   </div>
                 </div>
 
@@ -266,12 +266,12 @@ const getDiscountText = (promo: any) => {
                 <div v-if="contactInfo.website" class="flex gap-4">
                   <div class="shrink-0">
                     <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center">
-                      <Icon name="lucide:globe" class="w-6 h-6 text-purple-600" />
+                      <Icon name="lucide:globe" class="w-6 h-6 text-black" />
                     </div>
                   </div>
                   <div class="flex-1">
-                    <p class="font-semibold text-gray-800 mb-2">ເວັບໄຊ</p>
-                    <a :href="contactInfo.website" target="_blank" class="text-purple-600 hover:text-purple-700 font-medium transition-colors">
+                    <p class="font-semibold text-black mb-2">ເວັບໄຊ</p>
+                    <a :href="contactInfo.website" target="_blank" class="text-black hover:text-black font-medium transition-colors">
                       {{ contactInfo.website }}
                     </a>
                   </div>
@@ -280,14 +280,14 @@ const getDiscountText = (promo: any) => {
 
               <!-- Opening Hours -->
               <div v-if="contactInfo.openingHours" class="mt-8 pt-8 border-t border-gray-200">
-                <h4 class="font-bold text-gray-800 mb-4 flex items-center gap-2">
-                  <Icon name="lucide:clock" class="w-5 h-5 text-purple-600" />
+                <h4 class="font-bold text-black mb-4 flex items-center gap-2">
+                  <Icon name="lucide:clock" class="w-5 h-5 text-black" />
                   ເວລາເປີດເຮັດວຽກ
                 </h4>
                 <div class="grid grid-cols-2 gap-3">
                   <div v-for="(time, day) in contactInfo.openingHours" :key="day" class="text-sm">
-                    <span class="font-medium text-gray-700 capitalize">{{ day }}:</span>
-                    <span class="text-gray-600 ml-2">{{ time }}</span>
+                    <span class="font-medium text-black capitalize">{{ day }}:</span>
+                    <span class="text-black ml-2">{{ time }}</span>
                   </div>
                 </div>
               </div>
@@ -297,29 +297,29 @@ const getDiscountText = (promo: any) => {
             <div class="space-y-6">
               <!-- Address Card -->
               <div class="bg-white rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-shadow">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                <h3 class="text-2xl font-bold text-black mb-6 flex items-center gap-3">
                   <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
-                    <Icon name="lucide:map-pin" class="w-6 h-6 text-white" />
+                    <Icon name="lucide:map-pin" class="w-6 h-6 text-black" />
                   </div>
                   ທີ່ຢູ່
                 </h3>
 
                 <div class="space-y-4">
                   <div v-if="contactInfo.address" class="flex gap-3">
-                    <Icon name="lucide:home" class="w-5 h-5 text-gray-400 shrink-0 mt-1" />
-                    <p class="text-gray-700 leading-relaxed">{{ contactInfo.address }}</p>
+                    <Icon name="lucide:home" class="w-5 h-5 text-black shrink-0 mt-1" />
+                    <p class="text-black leading-relaxed">{{ contactInfo.address }}</p>
                   </div>
                   <div v-if="contactInfo.village" class="flex gap-3">
-                    <Icon name="lucide:map" class="w-5 h-5 text-gray-400 shrink-0 mt-1" />
-                    <p class="text-gray-700">ບ້ານ {{ contactInfo.village }}</p>
+                    <Icon name="lucide:map" class="w-5 h-5 text-black shrink-0 mt-1" />
+                    <p class="text-black">ບ້ານ {{ contactInfo.village }}</p>
                   </div>
                   <div v-if="contactInfo.district" class="flex gap-3">
-                    <Icon name="lucide:building" class="w-5 h-5 text-gray-400 shrink-0 mt-1" />
-                    <p class="text-gray-700">ເມືອງ {{ contactInfo.district }}</p>
+                    <Icon name="lucide:building" class="w-5 h-5 text-black shrink-0 mt-1" />
+                    <p class="text-black">ເມືອງ {{ contactInfo.district }}</p>
                   </div>
                   <div v-if="contactInfo.province" class="flex gap-3">
-                    <Icon name="lucide:landmark" class="w-5 h-5 text-gray-400 shrink-0 mt-1" />
-                    <p class="text-gray-700">{{ contactInfo.province }}</p>
+                    <Icon name="lucide:landmark" class="w-5 h-5 text-black shrink-0 mt-1" />
+                    <p class="text-black">{{ contactInfo.province }}</p>
                   </div>
                 </div>
               </div>
@@ -342,8 +342,8 @@ const getDiscountText = (promo: any) => {
           <!-- Description -->
           <div v-if="contactInfo.description" class="mt-8 bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl shadow-lg p-8">
             <div class="max-w-3xl mx-auto text-center">
-              <Icon name="lucide:info" class="w-12 h-12 text-purple-600 mx-auto mb-4" />
-              <p class="text-gray-700 text-lg leading-relaxed">{{ contactInfo.description }}</p>
+              <Icon name="lucide:info" class="w-12 h-12 text-black mx-auto mb-4" />
+              <p class="text-black text-lg leading-relaxed">{{ contactInfo.description }}</p>
             </div>
           </div>
         </section>
@@ -351,14 +351,14 @@ const getDiscountText = (promo: any) => {
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gradient-to-r from-purple-900 via-purple-800 to-pink-900 text-white py-12 mt-20">
+    <footer class="bg-gradient-to-r from-purple-900 via-purple-800 to-pink-900 text-black py-12 mt-20">
       <div class="container mx-auto px-4 text-center">
         <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm mb-4">
           <Icon name="lucide:heart-pulse" class="w-8 h-8" />
         </div>
         <h3 class="text-2xl font-bold mb-2">ຄລີນິກ ສຸຂະພາບດີ</h3>
-        <p class="text-white/80 mb-6">ໃຫ້ບໍລິການດ້ານສຸຂະພາບທີ່ມີຄຸນນະພາບ</p>
-        <p class="text-white/60 text-sm">© 2024 All rights reserved.</p>
+        <p class="text-black/80 mb-6">ໃຫ້ບໍລິການດ້ານສຸຂະພາບທີ່ມີຄຸນນະພາບ</p>
+        <p class="text-black/60 text-sm">© 2024 All rights reserved.</p>
       </div>
     </footer>
   </div>

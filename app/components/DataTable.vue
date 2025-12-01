@@ -56,9 +56,9 @@ const getAlignment = (align?: string) => {
           <td :colspan="columns.length" class="text-center py-12">
             <Icon
               name="lucide:loader-2"
-              class="w-8 h-8 animate-spin text-clinic-accent mx-auto"
+              class="w-8 h-8 animate-spin text-black mx-auto"
             />
-            <p class="mt-2 text-gray-400">ກຳລັງໂຫຼດ...</p>
+            <p class="mt-2 text-black">ກຳລັງໂຫຼດ...</p>
           </td>
         </tr>
 
@@ -67,9 +67,9 @@ const getAlignment = (align?: string) => {
           <td :colspan="columns.length" class="text-center py-12">
             <Icon
               name="lucide:inbox"
-              class="w-12 h-12 text-gray-600 mx-auto mb-2"
+              class="w-12 h-12 text-black mx-auto mb-2"
             />
-            <p class="text-gray-400">{{ emptyText }}</p>
+            <p class="text-black">{{ emptyText }}</p>
           </td>
         </tr>
 
