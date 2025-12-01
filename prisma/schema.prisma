@@ -26,21 +26,21 @@ model ClinicSettings {
 }
 
 model ContactInfo {
-  id          Int      @id @default(autoincrement())
-  phone       String?  @db.Text // Contact phone numbers (JSON array)
-  email       String?
-  facebook    String?
-  line        String?
-  website     String?
-  address     String?  @db.Text
-  province    String?  @default("ນະຄອນຫຼວງວຽງຈັນ")
-  district    String?
-  village     String?
-  openingHours String? @db.Text // JSON format for opening hours
-  mapUrl      String?  @db.Text // Google Maps embed URL
-  description String?  @db.Text
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           Int      @id @default(autoincrement())
+  phone        String?  @db.Text // Contact phone numbers (JSON array)
+  email        String?
+  facebook     String?
+  line         String?
+  website      String?
+  address      String?  @db.Text
+  province     String?  @default("ນະຄອນຫຼວງວຽງຈັນ")
+  district     String?
+  village      String?
+  openingHours String?  @db.Text // JSON format for opening hours
+  mapUrl       String?  @db.Text // Google Maps embed URL
+  description  String?  @db.Text
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   @@map("contact_info")
 }
@@ -157,6 +157,7 @@ model Promotion {
   isPercent   Boolean  @default(false) @map("is_percent")
   startDate   DateTime @map("start_date")
   endDate     DateTime @map("end_date")
+  images      Json? // Array of image paths
   isActive    Boolean  @default(true) @map("is_active")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

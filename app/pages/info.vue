@@ -20,39 +20,18 @@ const fetchContactInfo = async () => {
   }
 };
 
-// Fetch active promotions
+// Fetch active promotions from public API (no auth required)
 const fetchPromotions = async () => {
   try {
-    const response = await $fetch("/api/promotions");
-    console.log("Promotions API Response:", response);
+    const response = await $fetch("/api/promotions-public");
     
     if (response.success) {
-      console.log("All promotions:", response.data);
-      
-      // Filter active promotions only
-      const now = new Date();
-      console.log("Current date:", now);
-      
-      promotions.value = response.data.filter((p: any) => {
-        const start = new Date(p.startDate);
-        const end = new Date(p.endDate);
-        const isActive = p.isActive && now >= start && now <= end;
-        
-        console.log(`Promotion "${p.name}":`, {
-          isActive: p.isActive,
-          startDate: start,
-          endDate: end,
-          currentDate: now,
-          passesFilter: isActive
-        });
-        
-        return isActive;
-      });
-      
-      console.log("Filtered promotions:", promotions.value);
+      // API already returns only active promotions within date range
+      promotions.value = response.data || [];
     }
   } catch (error) {
     console.error("Error fetching promotions:", error);
+    promotions.value = [];
   }
 };
 
@@ -138,27 +117,47 @@ const getDiscountText = (promo: any) => {
               :key="promo.id"
               class="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
             >
-              <!-- Gradient overlay -->
-              <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
-              
-              <div class="relative p-6">
-                <!-- Discount Badge -->
-                <div class="absolute -top-2 -right-2 bg-gradient-to-br from-red-500 to-pink-500 text-black px-6 py-3 rounded-full font-bold text-xl shadow-lg transform rotate-12 group-hover:rotate-0 transition-transform">
+              <!-- Image Carousel or Gradient overlay -->
+              <div v-if="promo.images && promo.images.length > 0" class="relative">
+                <div class="aspect-video overflow-hidden">
+                  <img 
+                    :src="promo.images[0]" 
+                    :alt="promo.name"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <!-- Image count badge -->
+                <div v-if="promo.images.length > 1" class="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
+                  <Icon name="lucide:images" class="w-3 h-3" />
+                  {{ promo.images.length }} ຮູບ
+                </div>
+                <!-- Discount Badge on image -->
+                <div class="absolute top-4 right-4 bg-gradient-to-br from-red-500 to-pink-500 text-white px-4 py-2 rounded-full font-bold text-lg shadow-lg">
                   {{ getDiscountText(promo) }}
                 </div>
-
+              </div>
+              <div v-else class="relative h-32 bg-gradient-to-br from-purple-400/20 to-pink-400/20">
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <Icon name="lucide:gift" class="w-16 h-16 text-purple-400" />
+                </div>
+                <!-- Discount Badge -->
+                <div class="absolute top-4 right-4 bg-gradient-to-br from-red-500 to-pink-500 text-white px-4 py-2 rounded-full font-bold text-lg shadow-lg">
+                  {{ getDiscountText(promo) }}
+                </div>
+              </div>
+              
+              <div class="relative p-6">
                 <div class="mb-4">
-                  <Icon name="lucide:gift" class="w-12 h-12 text-black mb-3" />
                   <h3 class="text-2xl font-bold text-black mb-2">{{ promo.name }}</h3>
-                  <p class="text-black leading-relaxed">{{ promo.description }}</p>
+                  <p class="text-gray-600 leading-relaxed">{{ promo.description }}</p>
                 </div>
 
                 <div class="pt-4 border-t border-gray-100">
-                  <div class="flex items-center gap-2 text-sm text-black mb-2">
+                  <div class="flex items-center gap-2 text-sm text-gray-500 mb-2">
                     <Icon name="lucide:calendar" class="w-4 h-4" />
                     <span>ເລີ່ມ: {{ formatDate(promo.startDate) }}</span>
                   </div>
-                  <div class="flex items-center gap-2 text-sm text-black">
+                  <div class="flex items-center gap-2 text-sm text-gray-500">
                     <Icon name="lucide:calendar-x" class="w-4 h-4" />
                     <span>ສິ້ນສຸດ: {{ formatDate(promo.endDate) }}</span>
                   </div>

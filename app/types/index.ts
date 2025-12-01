@@ -94,6 +94,7 @@ export interface Promotion {
   isPercent: boolean;
   startDate: string;
   endDate: string;
+  images?: string[];
   isActive: boolean;
   createdAt: string;
 }
