@@ -5,7 +5,12 @@ definePageMeta({
 
 const { login, isLoading, isLoggedIn } = useAuth();
 const { error: showError } = useNotification();
-const { fetchSettings, name: clinicName, logo: clinicLogo, subtitle: clinicSubtitle } = useClinicSettings();
+const {
+  fetchSettings,
+  name: clinicName,
+  logo: clinicLogo,
+  subtitle: clinicSubtitle,
+} = useClinicSettings();
 
 // Fetch clinic settings on mount
 onMounted(() => {
@@ -111,32 +116,29 @@ const handleSubmit = async () => {
             <Icon name="lucide:user" class="label-icon" />
             ຊື່ຜູ້ໃຊ້
           </label>
-          <div 
+          <div
             class="input-wrapper"
-            :class="{ 
-              'input-focus': isFocused.username, 
-              'input-error': errors.username 
+            :class="{
+              'input-focus': isFocused.username,
+              'input-error': errors.username,
             }"
           >
-              <Icon
-                name="lucide:user"
-              class="input-icon"
-              />
-              <input
-                v-model="form.username"
-                type="text"
+            <Icon name="lucide:user" class="input-icon" />
+            <input
+              v-model="form.username"
+              type="text"
               class="field-input"
-                placeholder="ປ້ອນຊື່ຜູ້ໃຊ້"
+              placeholder="ປ້ອນຊື່ຜູ້ໃຊ້"
               @focus="isFocused.username = true"
               @blur="isFocused.username = false"
-              />
-            </div>
+            />
+          </div>
           <transition name="slide-down">
             <p v-if="errors.username" class="error-message">
               {{ errors.username }}
             </p>
           </transition>
-          </div>
+        </div>
 
         <!-- Password Field -->
         <div class="form-field">
@@ -144,49 +146,42 @@ const handleSubmit = async () => {
             <Icon name="lucide:lock" class="label-icon" />
             ລະຫັດຜ່ານ
           </label>
-          <div 
+          <div
             class="input-wrapper"
-            :class="{ 
-              'input-focus': isFocused.password, 
-              'input-error': errors.password 
+            :class="{
+              'input-focus': isFocused.password,
+              'input-error': errors.password,
             }"
           >
-              <Icon
-                name="lucide:lock"
-              class="input-icon"
-              />
-              <input
-                v-model="form.password"
-                :type="showPassword ? 'text' : 'password'"
+            <Icon name="lucide:lock" class="input-icon" />
+            <input
+              v-model="form.password"
+              :type="showPassword ? 'text' : 'password'"
               class="field-input"
-                placeholder="ປ້ອນລະຫັດຜ່ານ"
+              placeholder="ປ້ອນລະຫັດຜ່ານ"
               @focus="isFocused.password = true"
               @blur="isFocused.password = false"
-              />
-              <button
-                type="button"
-                @click="showPassword = !showPassword"
+            />
+            <button
+              type="button"
+              @click="showPassword = !showPassword"
               class="password-toggle"
-              >
-                <Icon
-                  :name="showPassword ? 'lucide:eye-off' : 'lucide:eye'"
+            >
+              <Icon
+                :name="showPassword ? 'lucide:eye-off' : 'lucide:eye'"
                 class="toggle-icon"
-                />
-              </button>
-            </div>
+              />
+            </button>
+          </div>
           <transition name="slide-down">
             <p v-if="errors.password" class="error-message">
               {{ errors.password }}
             </p>
           </transition>
-          </div>
+        </div>
 
-          <!-- Submit Button -->
-          <button
-            type="submit"
-          class="submit-button"
-            :disabled="isLoading"
-          >
+        <!-- Submit Button -->
+        <button type="submit" class="submit-button" :disabled="isLoading">
           <span class="button-content">
             <Icon
               v-if="isLoading"
@@ -195,12 +190,12 @@ const handleSubmit = async () => {
             />
             <Icon v-else name="lucide:log-in" class="button-icon" />
             <span class="button-text">
-            {{ isLoading ? "ກຳລັງເຂົ້າສູ່ລະບົບ..." : "ເຂົ້າສູ່ລະບົບ" }}
+              {{ isLoading ? "ກຳລັງເຂົ້າສູ່ລະບົບ..." : "ເຂົ້າສູ່ລະບົບ" }}
             </span>
           </span>
           <span class="button-shine"></span>
-          </button>
-        </form>
+        </button>
+      </form>
     </div>
 
     <!-- Footer -->
@@ -252,7 +247,11 @@ const handleSubmit = async () => {
 
 .logo-glow {
   @apply absolute inset-0 rounded-full blur-2xl opacity-40;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(59, 130, 246, 0.4));
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.4),
+    rgba(59, 130, 246, 0.4)
+  );
   transform: scale(1.2);
   animation: subtle-pulse 4s ease-in-out infinite;
 }
@@ -262,7 +261,11 @@ const handleSubmit = async () => {
          flex items-center justify-center shadow-xl
          border-2 border-white/30 backdrop-blur-sm
          transform transition-transform duration-300 hover:scale-105;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(59, 130, 246, 0.9));
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.9),
+    rgba(59, 130, 246, 0.9)
+  );
 }
 
 .logo-image {
@@ -295,9 +298,8 @@ const handleSubmit = async () => {
 /* Login Form Container */
 .login-form-container {
   @apply rounded-3xl border shadow-2xl overflow-hidden;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  border-color: rgba(255, 255, 255, 0.18);
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
 .form-header {
@@ -307,7 +309,11 @@ const handleSubmit = async () => {
 .form-icon-wrapper {
   @apply w-16 h-16 mx-auto rounded-2xl 
          flex items-center justify-center shadow-lg;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(139, 92, 246, 0.8));
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.8),
+    rgba(139, 92, 246, 0.8)
+  );
 }
 
 .form-icon {
@@ -348,17 +354,17 @@ const handleSubmit = async () => {
 .input-wrapper {
   @apply relative flex items-center rounded-xl backdrop-blur-sm
          border-2 transition-all duration-300;
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.15);
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.15);
 }
 
 .input-wrapper:hover {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(255, 255, 255, 0.25);
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.25);
 }
 
 .input-wrapper.input-focus {
-  background: rgba(255, 255, 255, 0.1);
+  background: #ffffff;
   border-color: rgba(139, 92, 246, 0.6);
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
   transform: scale(1.005);
@@ -371,7 +377,7 @@ const handleSubmit = async () => {
 
 .input-icon {
   @apply absolute left-4 w-5 h-5 pointer-events-none;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .input-wrapper.input-focus .input-icon {
@@ -396,12 +402,12 @@ const handleSubmit = async () => {
 .password-toggle {
   @apply absolute right-4 p-1.5 rounded-lg
          transition-all duration-200;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .password-toggle:hover {
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(255, 255, 255, 0.08);
+  color: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .toggle-icon {
@@ -420,12 +426,20 @@ const handleSubmit = async () => {
          overflow-hidden transition-all duration-300
          disabled:opacity-60 disabled:cursor-not-allowed
          active:scale-[0.98];
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(139, 92, 246, 0.9));
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.9),
+    rgba(139, 92, 246, 0.9)
+  );
   box-shadow: 0 4px 14px rgba(59, 130, 246, 0.25);
 }
 
 .submit-button:hover:not(:disabled) {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 1), rgba(139, 92, 246, 1));
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 1),
+    rgba(139, 92, 246, 1)
+  );
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
   transform: translateY(-1px);
 }
@@ -472,7 +486,8 @@ const handleSubmit = async () => {
 }
 
 @keyframes subtle-pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
   }
   50% {
@@ -508,11 +523,11 @@ const handleSubmit = async () => {
   .clinic-title {
     @apply text-3xl;
   }
-  
+
   .logo-container {
     @apply w-20 h-20;
   }
-  
+
   .logo-icon {
     @apply w-10 h-10;
   }
