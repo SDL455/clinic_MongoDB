@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import "dotenv/config";
 
 const prisma = new PrismaClient();
 
@@ -141,25 +142,35 @@ async function main() {
       firstName: "ສົມໃຈ",
       lastName: "ວົງສະຫວັນ",
       phone: "02012345678",
-      address: "ບ້ານ ໜອງທາ, ເມືອງ ໄຊທານີ, ນະຄອນຫຼວງວຽງຈັນ",
+      province: "ນະຄອນຫຼວງວຽງຈັນ",
+      district: "ໄຊທານີ",
+      village: "ໜອງທາ",
     },
   });
   console.log("✅ Created sample customer:", customer.phone);
 
   // Create sample promotion
-  const promotion = await prisma.promotion.upsert({
-    where: { id: 1 },
-    update: {},
-    create: {
-      name: "ເປີດຮ້ານໃໝ່",
-      description: "ສ່ວນຫຼຸດພິເສດສຳລັບການເປີດຮ້ານໃໝ່",
-      discount: 10,
-      isPercent: true,
-      startDate: new Date(),
-      endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
-    },
+  const existingPromotion = await prisma.promotion.findFirst({
+    where: { name: "ເປີດຮ້ານໃໝ່" },
   });
-  console.log("✅ Created sample promotion:", promotion.name);
+  
+  let promotion;
+  if (!existingPromotion) {
+    promotion = await prisma.promotion.create({
+      data: {
+        name: "ເປີດຮ້ານໃໝ່",
+        description: "ສ່ວນຫຼຸດພິເສດສຳລັບການເປີດຮ້ານໃໝ່",
+        discount: 10,
+        isPercent: true,
+        startDate: new Date(),
+        endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
+      },
+    });
+    console.log("✅ Created sample promotion:", promotion.name);
+  } else {
+    promotion = existingPromotion;
+    console.log("✅ Sample promotion already exists:", promotion.name);
+  }
 
   console.log("\n🎉 Seeding completed!");
   console.log("\n📋 Login credentials:");

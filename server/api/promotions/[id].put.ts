@@ -7,7 +7,7 @@ import { existsSync } from "fs";
 export default defineEventHandler(async (event) => {
   await requireAuth(event);
 
-  const id = parseInt(event.context.params?.id || "");
+  const id = event.context.params?.id || "";
 
   if (!id) {
     throw createError({

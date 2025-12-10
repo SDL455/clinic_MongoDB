@@ -1,2 +1,8 @@
 DATABASE_URL="mysql://somdee:112233@localhost:3306/clinic"
 JWT_SECRET="your-super-secret-jwt-key-change-in-production"
+
+Admin: username=admin, password=admin123
+Employee: username=employee, password=employee123
+
+
+DATABASE_URL="mongodb+srv://soumdee789_db_user:emoHsf9OQepLDBwO@cluster0.l3nx3bh.mongodb.net/clinic?retryWrites=true&w=majority&appName=Cluster0"

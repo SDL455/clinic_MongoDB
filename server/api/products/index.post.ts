@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
   let costPrice: number | undefined;
   let stock: number | undefined;
   let minStock: number | undefined;
-  let categoryId: number | undefined;
+  let categoryId: string | undefined;
   const imageFiles: { data: Buffer; filename: string }[] = [];
 
   for (const field of formData) {
@@ -40,7 +40,7 @@ export default defineEventHandler(async (event) => {
     } else if (field.name === "minStock" && field.data) {
       minStock = parseInt(field.data.toString("utf-8"), 10);
     } else if (field.name === "categoryId" && field.data) {
-      categoryId = parseInt(field.data.toString("utf-8"), 10);
+      categoryId = field.data.toString("utf-8");
     } else if (field.name === "images" && field.data && field.filename) {
       imageFiles.push({ data: field.data, filename: field.filename });
     }
@@ -61,7 +61,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  if (!categoryId || categoryId === 0) {
+  if (!categoryId) {
     throw createError({
       statusCode: 400,
       message: "ກະລຸນາເລືອກປະເພດ",

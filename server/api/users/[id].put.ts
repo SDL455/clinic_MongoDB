@@ -4,7 +4,7 @@ import { requireAdmin, hashPassword } from "../../utils/auth";
 export default defineEventHandler(async (event) => {
   await requireAdmin(event);
 
-  const id = parseInt(event.context.params?.id || "");
+  const id = event.context.params?.id || "";
   const body = await readBody(event);
 
   if (!id) {

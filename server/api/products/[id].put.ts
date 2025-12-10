@@ -7,7 +7,7 @@ import { existsSync } from "fs";
 export default defineEventHandler(async (event) => {
   await requireAuth(event);
 
-  const id = parseInt(event.context.params?.id || "");
+  const id = event.context.params?.id || "";
 
   if (!id) {
     throw createError({
@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
   let costPrice: number | undefined;
   let stock: number | undefined;
   let minStock: number | undefined;
-  let categoryId: number | undefined;
+  let categoryId: string | undefined;
   let existingImages: string[] = [];
   const imageFiles: { data: Buffer; filename: string }[] = [];
 
@@ -59,7 +59,7 @@ export default defineEventHandler(async (event) => {
     } else if (field.name === "minStock" && field.data) {
       minStock = parseInt(field.data.toString("utf-8"), 10);
     } else if (field.name === "categoryId" && field.data) {
-      categoryId = parseInt(field.data.toString("utf-8"), 10);
+      categoryId = field.data.toString("utf-8");
     } else if (field.name === "existingImages" && field.data) {
       try {
         existingImages = JSON.parse(field.data.toString("utf-8"));
@@ -86,7 +86,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  if (categoryId !== undefined && (!categoryId || categoryId === 0)) {
+  if (categoryId !== undefined && !categoryId) {
     throw createError({
       statusCode: 400,
       message: "ກະລຸນາເລືອກປະເພດ",
